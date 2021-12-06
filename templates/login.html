@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+Please login below.
+
+<!-- Insert login form here-->
+
+<div class="coffee-loginpage">
+
+    <h1>CoffeesHop</h1>
+  
+    <!--<img src="img url here" /> -->
+
+    <form action="/get-user", method='POST'>
+      <div> 
+        <label for="email">Email Address: </label>
+        <input type="email" name="email" required />
+      </div>
+      <div>
+        <label for="password">Password: </label>
+        <input id="password" type="password" name="password" required />
+      </div>
+      <div>
+        <button type="submit">Sign In</button>
+      </div>
+    </form>
+
+{% endblock %}
