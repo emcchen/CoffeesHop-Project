@@ -1,24 +1,41 @@
 {% extends 'base.html' %}
 
 {% block head %}
-Please login below.
+Please login or signup below.
 
 <!-- Insert login form here-->
 
 <div class="coffee-loginpage">
 
     <h1>CoffeesHop</h1>
+    <p> 
+    </p>
   
     <!--<img src="img url here" /> -->
+    <div class='registration'>
+        <h4>Register</h4>
+        <label for='email'><b>Email:</b></label>
+        <input type='text' placeholder='Enter email' name='email' id='email' required>
+    <div></div>
+        <label for='password'><b>Password:</b></label>
+        <input type='password' placeholder='Enter password' name='password' id='password' required>
+    </div>
+    <div>
+        <button type='submit' class='registerbtn'>Register</button>
+    </div>
+    <p>
+
+    </p>
 
     <form action="/get-user", method='POST'>
+        <h4>Sign In</h4>
       <div> 
-        <label for="email">Email Address: </label>
+        <label for="email"><b>Email Address:</b></label>
         <input type="email" name="email" required />
       </div>
       <div>
-        <label for="password">Password: </label>
-        <input id="password" type="password" name="password" required />
+        <label for="password"><b>Password:</b></label>
+        <input type="password" type="password" name="password" required />
       </div>
       <div>
         <button type="submit">Sign In</button>
@@ -26,3 +43,5 @@ Please login below.
     </form>
 
 {% endblock %}
+
+
