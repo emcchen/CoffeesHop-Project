@@ -53,13 +53,6 @@ def show_shop_form():
     return render_template('search-form.html')
 
 
-
-
-
-
-
-
-
 @app.route('/shop/search')
 def find_shops():
     """Search for shops on YELP"""
@@ -68,12 +61,15 @@ def find_shops():
     endpoint = 'https://api.yelp.com/v3/businesses/search'
     headers = {'Authorization': 'bearer %s' % api_key}
     zipcode = request.args.get('zipcode')
-    parameters = {'term': 'coffee & tea',
+    parameters = {'term': 'coffee',
                   'location': zipcode,
                   'radius': 10000,
                   'limit': 50,
                   'offset':50,
-                  'attribute': 'open_to_all, gender_neutral_restrooms'}
+                  'sort_by': 'distance',
+                  'categories': 'coffeeshops,coffee,coffeeroasteries, cafes',
+                  'attributes': 'open_to_all,gender_neutral_restrooms'
+                  }
 
 
     response = requests.get(url = endpoint, params= parameters, headers = headers)
@@ -82,46 +78,6 @@ def find_shops():
 
     return render_template('search-results.html',
                             business_data=business_data)
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#API_KEY = os.environ['YELP_API_KEY']
-#ENDPOINT = 'https://api.yelp.com/v3/categories/coffee'
-#HEADERS = {'Authorization': 'bearer %s' % API_KEY}
-
-#make request to the API
-#response = requests.get(url = ENDPOINT, headers = HEADERS)
-
-#convert JSON string into dictionary
-#business_data = response.json()
-
-#loop through response to get each category.
-#for item in business_data['category']:
-#    print(item['title'])
-
-
-#print(json.dumps(business_data, indent=3))
-
-
-
 
 
 
