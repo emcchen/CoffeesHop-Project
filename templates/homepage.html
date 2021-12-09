@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
 {% block head %}
-Welcome back {{ session['user'] }} :)
+<h1> Welcome back {{ session['user'] }} :)</h1>
+{% endblock %}
+
+{% block content %}
+<b>What would you like to do?</b>
+
 {% endblock %}
