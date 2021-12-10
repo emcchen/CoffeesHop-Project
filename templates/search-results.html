@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block head %} 
+<h1>What are you feeling today?</h1>
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+    <div>
+        <a href='/shop'>
+            Go back to search form
+        </a>
+    </div>
+</div>
+
+<div class= row>
+    {% for bis in business_data['businesses'] %}
+    
+            <p><b> {{ bis['name'] }} </b></p>
+                <div>
+                    {{ bis['categories'][0]['title'] }}
+                </div>
+                <div>
+                    {{ bis['location']['address1'] }}, {{ bis['location']['zip_code'] }}
+                </div>
+                <div>
+                   {{ bis['display_phone'] }}
+                </div>   
+                <div>
+                    Rating Score: {{ bis['rating'] }}
+                </div>
+                <div>
+                    <img src="{{ bis['image_url'] }}" />
+                </div>
+    
+    {% endfor %}
+
+</div>
+{% endblock %}
