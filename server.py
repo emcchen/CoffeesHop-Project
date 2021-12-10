@@ -33,16 +33,21 @@ def register():
 
 #@app.route('/register-user', methods=["POST"])
 #def register_user():
-    email = request.form['email']
-    password= request.form['password']
-    user = get_user_by_email(email)
-    if user:
-        return 'A user already exists with that email.'
-    else:
-        create_user(email, password)
+#    email = request.form['email']
+#    password= request.form['password']
+#    user = get_user_by_email(email)
+#    if user:
+#        return 'A user already exists with that email.'
+#    else:
+#        create_user(email, password)
 
-        return redirect('login-form.html')
+#        return redirect('login-form.html')
 
+@app.route('/reviews')
+def reviews():
+    """Shows individual reviews page"""
+
+    return render_template('reviews.html')
 
 
 

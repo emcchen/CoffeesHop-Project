@@ -10,13 +10,12 @@ class User(db.Model):
     __tablename__ = 'users'
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    fname = db.Column(db.String(20), nullable=False)
-    lname = db.Column(db.String(20), nullable=False)
+    username = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(40), nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
 
     def __repr__(self):
-        return f'<User user_id={self.user_id} fname={self.fname}>'
+        return f'<User user_id={self.user_id} username={self.username}>'
 
 
 class Likes(db.Model):

@@ -16,8 +16,8 @@
 
 <div class= row>
     {% for bis in business_data['businesses'] %}
+        <A HREF='/reviews'> <b> {{ bis['name'] }} </b> </A>
     
-            <p><b> {{ bis['name'] }} </b></p>
                 <div>
                     {{ bis['categories'][0]['title'] }}
                 </div>

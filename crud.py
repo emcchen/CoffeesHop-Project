@@ -3,10 +3,9 @@
 from model import db, User, Likes, Shops, connect_to_db
 
 
-def create_user(fname, lname, email, password):
+def create_user(username, lname, email, password):
     """Create and return a new user"""
-    new_user= User(fname=fname,
-                   lname=lname,
+    new_user= User(username=username,
                    email=email,
                    password=password)
 
@@ -32,6 +31,11 @@ def create_shop(shop_name, address, zip_code, phone):
     db.session.commit()
 
     return shop_info
+
+#def check_db_for_email():
+    """"Checks if email is in database"""
+
+
 
 
 
