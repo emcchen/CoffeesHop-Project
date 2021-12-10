@@ -25,9 +25,9 @@ def create_favorite(user, shop):
     return fav
 
 
-def create_shop(shop_name, address, phone):
+def create_shop(shop_name, address, zip_code, phone):
     """Create shop info database"""
-    shop_info= Shops(shop_name=shop_name, address=address, phone=phone)
+    shop_info= Shops(shop_name=shop_name, address=address, zip_code=zip_code, phone=phone)
     db.session.add(shop_info)
     db.session.commit()
 
