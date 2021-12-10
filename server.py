@@ -1,11 +1,14 @@
+"""Server for coffeesHop search project"""
+
+
 from flask import Flask, request, render_template, redirect, session
 import json
-from pprint import pformat
 import jinja2
-import os
+import os, model, crud
 import requests
 
 app = Flask(__name__)
+api_key = os.environ['YELP_API_KEY']
 
 # Required to use Flask sessions
 app.secret_key = "SECRET"
@@ -29,7 +32,18 @@ def register():
     return render_template('register.html')
 
 #@app.route('/register-user', methods=["POST"])
-#def new_user_form():
+#def register_user():
+    email = request.form['email']
+    password= request.form['password']
+    user = get_user_by_email(email)
+    if user:
+        return 'A user already exists with that email.'
+    else:
+        create_user(email, password)
+
+        return redirect('login-form.html')
+
+
 
 
 @app.route('/get-user', methods=["POST"])
