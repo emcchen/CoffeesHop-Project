@@ -42,10 +42,12 @@ class Shops(db.Model):
     shop_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     shop_name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(100), nullable=False)
+    zip_code = db.Column(db.Integer, nullable=False)
     phone = db.Column(db.String(20), nullable=False)
+
     
     def __repr__(self):
-        return f'<Shop shop_id={self.shop_id} address={self.address}>'
+        return f'<Shop shop_id={self.shop_id} shop_name={self.shop_name}>'
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///favorites", echo=True):
