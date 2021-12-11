@@ -2,9 +2,10 @@
 
 
 from flask import Flask, request, render_template, redirect, session
+from model import connect_to_db
 import json
 import jinja2
-import os, model, crud
+import os, crud
 import requests
 
 app = Flask(__name__)
@@ -28,27 +29,25 @@ def loginpage():
 
 @app.route('/register')
 def register():
-    """Register new users"""
+    """Redirect to register new user page"""
     return render_template('register.html')
+    
 
-#@app.route('/register-user', methods=["POST"])
-#def register_user():
-#    email = request.form['email']
-#    password= request.form['password']
-#    user = get_user_by_email(email)
-#    if user:
-#        return 'A user already exists with that email.'
-#    else:
-#        create_user(email, password)
+@app.route('/register-user', methods=['POST'])
+def register_user():
+    """Registers new user"""
 
-#        return redirect('login-form.html')
-
-@app.route('/reviews')
-def reviews():
-    """Shows individual reviews page"""
-
-    return render_template('reviews.html')
-
+    username = request.form['username']
+    email = request.form['email']
+    password= request.form['password']
+    
+    if check_username_in_db(username):
+        return 'That username already exists!'
+    elif check_email_in_db(email):
+        return 'That email is already registered!'
+    else:
+        create_user(username, email, password)
+        return redirect('login-form.html')
 
 
 @app.route('/get-user', methods=["POST"])
@@ -104,3 +103,4 @@ def find_shops():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
+    connect_to_db(app)
