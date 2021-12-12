@@ -14,7 +14,7 @@ def create_user(username, email, password):
 
     return new_user
 
-def create_favorite(user, shop, review):
+def create_review(user, shop, review):
     """Create and return new favorite and review shop"""
     new_review_and_fav = Review(user=user, shop=shop, review=review)
 
