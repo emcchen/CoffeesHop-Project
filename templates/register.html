@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<h2>Create an Account</h2>
+<form action="/register-user" method="POST">
+  <p>
+    Username <input type="text" name="username" required>
+  </p>
+<!--<label for='user'><b>Username:</b></label>
+<input type='text' placeholder='Enter a username' name='username' id='username' required>-->
+
+  <p>
+    Email <input type="text" name = "email" required>
+  </p>
+
+  <p>
+    Password <input type="password" name="password" required>
+  </p>
+
+  <p>
+    <button type="submit">Register</button>
+  </p>
+</form>
+
+<A HREF='/'> Click here to return to login </A>
+
+{% endblock %}
