@@ -1,11 +1,11 @@
 """Server for coffeesHop search project"""
 
-
-from flask import Flask, request, render_template, redirect, session
+import os
+from flask import Flask, request, render_template, redirect, session, flash
 from model import connect_to_db
+from jinja2 import StrictUndefined
 import json
-import jinja2
-import os, crud
+import crud
 import requests
 
 app = Flask(__name__)
@@ -18,13 +18,13 @@ app.secret_key = "SECRET"
 # Jinja silently ignores this. This makes debugging difficult, so we'll
 # set an attribute of the Jinja environment that says to make this an
 # error.
-app.jinja_env.undefined = jinja2.StrictUndefined
+app.jinja_env.undefined = StrictUndefined
 
 
 
 @app.route('/')
 def loginpage():
-    """Log users in"""
+    """First page that logs users in"""
     return render_template('login.html')
 
 @app.route('/register')
@@ -35,40 +35,84 @@ def register():
 
 @app.route('/register-user', methods=['POST'])
 def register_user():
-    """Registers new user"""
+    """Creates new user"""
 
-    username = request.form['username']
-    email = request.form['email']
-    password= request.form['password']
-    
-    if check_username_in_db(username):
-        return 'That username already exists!'
-    elif check_email_in_db(email):
-        return 'That email is already registered!'
+    username = request.form.get('username')
+    email = request.form.get('email')
+    password= request.form.get('password')
+
+    user = crud.get_user_by_username(username)
+
+    if user:
+        flash('The username or email has already been registered.')
+        return redirect('/register')
     else:
-        create_user(username, email, password)
-        return redirect('login-form.html')
+        crud.create_user(username, email, password)
+        flash("Account created, please log in")
+        return redirect('/')
 
 
 @app.route('/get-user', methods=["POST"])
-def get_form():
-    """Get user and pass from request.form"""
-    email = request.form['email']
-    password = request.form['password']
-    session['user'] = email
-    session['pass'] = password
+def gets_user():
+    """Logs users in"""
 
-    return redirect ('/home')
+    username = request.form['username']
+    password = request.form['password']
+
+    #Grabs existing users from db
+    user = crud.get_user_by_username(username)
+    #Checks username and password with db
+    if user and user.password == password:
+        session['current_user'] = user.username
+        flash(f'Welcome back, {user.username} :) ')
+        return redirect('/home')
+    else:
+        flash('The email or password you entered was incorrect.')
+        return redirect('/')
+    
+
 
 @app.route('/home')
 def homepage():
-    """Returns homepage"""
+    """Shows homepage"""
+
+#    if 'current_user' in session:
+#        user = crud.get_user_by_id(session['current_user'])
+#    else:
+#        user = None
+
     return render_template('homepage.html')
 
 @app.route('/shop')
 def show_shop_form():
     """Show shops search form"""
     return render_template('search-form.html')
+
+@app.route('/shops')
+def show_fav_shops():
+    """Show favorited shops"""
+
+    user = crud.get_user_by_id()
+    reviews = user.reviews
+    return render_template('fav-shops.html', user=user, reviews=reviews)
+
+
+@app.route('/users')
+def all_users():
+    """View all users"""
+
+    users = crud.get_users()
+    return render_template('all_users.html', users=users)
+
+@app.route('/users/<user_id>')
+def show_user(user_id):
+    """Show user details"""
+
+    user = crud.get_user_by_id(user_id)
+    reviews = user.reviews
+
+    return render_template('user_details.html', user=user, reviews=reviews)
+
 
 
 @app.route('/shop/search')
@@ -100,7 +144,7 @@ def find_shops():
 
 
 
-
+#Connect to database before app.run or Flask won't be able to access db
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
     connect_to_db(app)
+    app.run(debug=True, host='0.0.0.0')

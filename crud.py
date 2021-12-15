@@ -14,14 +14,35 @@ def create_user(username, email, password):
 
     return new_user
 
+
+def get_users():
+    """Returns all users"""
+
+    return User.query.all()
+
+def get_user_by_id(user_id):
+    """Returns a user by user id"""
+    return User.query.get(user_id)
+
+def get_user_by_username(username):
+    """Returns a user by their username"""
+    return User.query.filter(User.username==username).first()
+
+
+def get_user_reviews(user_id):
+    """Get reviews left by current user"""
+    return Review.query.filter_by(user_id=user_id).all()
+
+
 def create_review(user, shop, review):
-    """Create and return new favorite and review shop"""
+    """Create and return new review shop"""
     new_review_and_fav = Review(user=user, shop=shop, review=review)
 
     db.session.add(new_review_and_fav)
     db.session.commit()
 
     return new_review_and_fav
+
 
 
 def create_shop(shop_name, address, zip_code, phone):
@@ -32,9 +53,15 @@ def create_shop(shop_name, address, zip_code, phone):
 
     return shop_info
 
-def get_user_by_username(username):
-    """Gets a user by their username"""
-    return User.query.filter_by(User.username==username)
+
+def get_shops():
+    """Returns all shops"""
+    return Shop.query.all()
+
+
+
+
+
 
 
 

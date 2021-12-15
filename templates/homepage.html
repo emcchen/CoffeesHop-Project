@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<h1> Welcome back {{ session['user'] }} :)</h1>
+<h1> Welcome back {{ session['current_user'] }}!</h1>
 {% endblock %}
 
 {% block content %}
-<b>What would you like to do?</b>
+    <b>What would you like to do?</b>
+    <ul>
+        <li><a href="/shop"> Search for coffee shops</a></li>
+        <li><a href="/shops">View reviewed coffee shops</a></li>
+        <li><a href="/users">View all users</a></li>
+    </ul>
+
+    <a href="/logout"> Log Out.</a>
+  </div>
 
 {% endblock %}

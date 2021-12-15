@@ -15,20 +15,21 @@ Please login or signup below.
     <p>
     </p>
 
-    <form action="/get-user", method='POST'>
-        <h4>Sign In</h4>
-      <div> 
-        <label for="email"><b>Username:</b></label>
-        <input type="username" name="username" required />
-      </div>
-      <div>
-        <label for="password"><b>Password:</b></label>
-        <input type="password" type="password" name="password" required />
-      </div>
-      <div>
+    <h2>Log In</h2>
+    <form action="/get-user" method="POST">
+      <p>
+        Username <input type="text" name="username" required>
+      </p>
+  
+      <p>
+        Password <input type="password" name="password" required>
+      </p>
+  
+      <p>
         <button type="submit">Sign In</button>
-      </div>
+      </p>
     </form>
+    
 
     <div>
     <A HREF='/register'> Click here to register </A>
