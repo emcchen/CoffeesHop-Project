@@ -7,7 +7,11 @@ function initMap() {
         lat: 37.773972,
         lng: -122.431297,
       },
-      zoom: 11 
+      scrollwheel: false,
+      zoom: 10,
+      zoomControl: true,
+      panControl: false,
+      styles: MAPSTYLES
     });
 
     // A single InfoWindow instance 
