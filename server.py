@@ -1,7 +1,7 @@
 """Server for coffeesHop search project"""
 
 import os
-from flask import Flask, request, render_template, redirect, session, flash
+from flask import Flask, request, render_template, redirect, session, flash, jsonify
 from model import connect_to_db
 from jinja2 import StrictUndefined
 import json
@@ -117,12 +117,18 @@ def show_user(user_id):
 
 @app.route('/shop/search')
 def find_shops():
+    zipcode = request.args.get('zipcode')
+    business_data= yelp_searches(zipcode)
+
+    return render_template('search-results.html',
+                            business_data=business_data, zipcode=zipcode)
+
+def yelp_searches(zipcode):
     """Search for shops on YELP"""
     #components of requests
     api_key = os.environ['YELP_API_KEY']
     endpoint = 'https://api.yelp.com/v3/businesses/search'
     headers = {'Authorization': 'bearer %s' % api_key}
-    zipcode = request.args.get('zipcode')
     parameters = {'term': 'coffee',
                   'location': zipcode,
                   'radius': 10000,
@@ -138,8 +144,14 @@ def find_shops():
     #convert JSON string to a Dictionary
     business_data = response.json()
 
-    return render_template('search-results.html',
-                            business_data=business_data)
+    return business_data
+
+@app.route('/map')
+def map_data():
+    zipcode = request.args.get('zipcode')
+    business_data= yelp_searches(zipcode)
+
+    return jsonify(business_data)
 
 
 

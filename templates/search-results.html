@@ -13,15 +13,21 @@
         </a>
     </div>
 </div>
+<div class='zipcode' id={{zipcode}}>
+    Search results for zipcode: {{ zipcode }}
+</div>
 
 <div class= row>
     {% for bis in business_data['businesses'] %}
 <!--        <A HREF='/reviews'> <b> {{ bis['name'] }} </b> </A> -->
-                <div>
+                <div id='store-name'>
                     {{ bis['name'] }}
                 </div>
-                <div>
-                    Latitude: {{ bis['coordinates']['latitude'] }}, longitude: {{ bis['coordinates']['longitude'] }} 
+                <div id='latitude'>
+                    {{ bis['coordinates']['latitude'] }}, 
+                </div>
+                <div id='longitude'>
+                    {{ bis['coordinates']['longitude'] }}
                 </div>
                 <div>
                     {{ bis['categories'][0]['title'] }}
@@ -40,6 +46,18 @@
                 </div>
     
     {% endfor %}
+    
 
 </div>
+
+<section class="map">
+    <div id="map"></div>
+</section>
+
+<script src="/static/js/maps.js"></script>
+<script
+  async
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZmQ10tNqdUC0aaySBGl4N8AcY8f-_2js&callback=initMap">
+</script>
+
 {% endblock %}
