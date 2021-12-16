@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+hi testt on fav-shops html
+
+{{ user.username }}'s Page{% endblock %}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ user.email }}</h1>
+{% for review in reviews %}
+    <h1> {{ review }} </h1>
+{% endfor %}
+{% endblock %}
