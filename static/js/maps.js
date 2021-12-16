@@ -6,8 +6,8 @@ function initMap() {
       center: {
         lat: 37.773972,
         lng: -122.431297,
-      }, 
-      zoom: 11
+      },
+      zoom: 11 
     });
 
     // A single InfoWindow instance 
