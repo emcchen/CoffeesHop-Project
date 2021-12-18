@@ -10,7 +10,6 @@ import requests
 
 app = Flask(__name__)
 api_key = os.environ['YELP_API_KEY']
-
 # Required to use Flask sessions
 app.secret_key = "SECRET"
 
@@ -88,13 +87,13 @@ def show_shop_form():
     """Show shops search form"""
     return render_template('search-form.html')
 
-@app.route('/shops')
-def show_fav_shops():
-    """Show favorited shops"""
+# @app.route('/shops')
+# def show_fav_shops():
+#     """Show favorited shops"""
 
-    user = crud.get_user_by_id()
-    reviews = user.reviews
-    return render_template('fav-shops.html', user=user, reviews=reviews)
+#     user = crud.get_user_by_id()
+#     reviews = user.reviews
+#     return render_template('fav-shops.html', user=user, reviews=reviews)
 
 
 @app.route('/users')
@@ -113,10 +112,14 @@ def show_user(user_id):
 
     return render_template('user_details.html', user=user, reviews=reviews)
 
+# @app.route('/shop/search/<yelp_id>')
+# def show shop(yelp_id)
+
 
 
 @app.route('/shop/search')
 def find_shops():
+    """Renders search result html page"""
     zipcode = request.args.get('zipcode')
     business_data= yelp_searches(zipcode)
 
@@ -126,7 +129,6 @@ def find_shops():
 def yelp_searches(zipcode):
     """Search for shops on YELP"""
     #components of requests
-    api_key = os.environ['YELP_API_KEY']
     endpoint = 'https://api.yelp.com/v3/businesses/search'
     headers = {'Authorization': 'bearer %s' % api_key}
     parameters = {'term': 'coffee',
@@ -148,11 +150,25 @@ def yelp_searches(zipcode):
 
 @app.route('/map')
 def map_data():
+    """Returns stores list for google maps using entered zipcode"""
     zipcode = request.args.get('zipcode')
     business_data= yelp_searches(zipcode)
 
     return jsonify(business_data)
 
+@app.route('/review/<yelp_id>')
+def reviews(yelp_id):
+    """Search for shops on YELP by id"""
+    #components of requests
+    endpoint = f'https://api.yelp.com/v3/businesses/{yelp_id}'
+    headers = {'Authorization': f'bearer {api_key}'}
+
+
+    response = requests.get(url = endpoint, headers = headers)
+    #convert JSON string to a Dictionary
+    business_info = response.json()
+
+    return render_template('shop_details.html', business_info=business_info, yelp_id=yelp_id)
 
 
 

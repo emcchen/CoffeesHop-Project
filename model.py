@@ -27,7 +27,8 @@ class Review(db.Model):
 
     fav_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    shop_id = db.Column(db.Integer, db.ForeignKey('shops.shop_id'), nullable=False)
+    yelp_id = db.Column(db.String(100), nullable=False)
+    shop_id = db.Column(db.Integer, db.ForeignKey('shops.shop_id'), nullable=True)
     review = db.Column(db.String(500))
 
     def __repr__(self):

@@ -16,10 +16,13 @@
 <div class='zipcode' id={{zipcode}}>
     Search results for zipcode: {{ zipcode }}
 </div>
+<div>
+    Total results: {{business_data['total']}}
+</div>   
 
 <div class= row>
     {% for bis in business_data['businesses'] %}
-<!--        <A HREF='/reviews'> <b> {{ bis['name'] }} </b> </A> -->
+        <A HREF="/review/{{bis['id']}}"> {{ bis['name'] }} </A>
                 <div id='store-name'>
                     {{ bis['name'] }}
                 </div>
