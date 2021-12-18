@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block head %} 
+    <h1>Testing shop details</h1>
+{% endblock %}
+
+{% block content %}
+<div class= row>
+                <div>
+                    {{ business_info['name'] }}
+                </div>
+                <div>
+                    {{ business_info['location']['address1'] }}
+                </div>
+{% endblock %}
