@@ -13,25 +13,19 @@
         </a>
     </div>
 </div>
-<div class='zipcode' id={{zipcode}}>
+<p class='zipcode' id={{zipcode}}>
     Search results for zipcode: {{ zipcode }}
-</div>
-<div>
+</p>
+<p>
     Total results: {{business_data['total']}}
-</div>   
+</p>   
 
 <div class= row>
     {% for bis in business_data['businesses'] %}
         <A HREF="/review/{{bis['id']}}"> {{ bis['name'] }} </A>
-                <div id='store-name'>
-                    {{ bis['name'] }}
-                </div>
-                </div>
+
                 <div>
                     {{ bis['categories'][0]['title'] }}
-                </div>
-                <div>
-                    {{ bis['location']['address1'] }}, {{ bis['location']['zip_code'] }}
                 </div>
                 <div>
                    {{ bis['display_phone'] }}
@@ -42,6 +36,7 @@
                 <div>
                     <img src="{{ bis['image_url'] }}" />
                 </div>
+                <p></p>
     
     {% endfor %}
     

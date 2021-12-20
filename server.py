@@ -130,7 +130,7 @@ def yelp_searches(zipcode):
     """Search for shops on YELP"""
     #components of requests
     endpoint = 'https://api.yelp.com/v3/businesses/search'
-    headers = {'Authorization': 'bearer %s' % api_key}
+    headers = {'Authorization': f'bearer {api_key}'}
     parameters = {'term': 'coffee',
                   'location': zipcode,
                   'radius': 10000,
