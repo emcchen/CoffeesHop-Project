@@ -68,32 +68,69 @@ def gets_user():
     else:
         flash('The email or password you entered was incorrect.')
         return redirect('/')
-    
 
+
+@app.route('/new-shop', methods=["POST"])
+def add_shop():
+    """ Adds a store to the database """
+
+    shop_name = request.json.get('name')
+    address = request.json.get('address')
+    zip_code = request.json.get('zip')
+    phone = request.json.get('phone')
+    yelp_id = request.json.get('id')
+
+    logged_in_user = session.get('user_username')
+    review_left = request.form.get('review')
+    shop = crud.get_shop_by_yelp_id(yelp_id)
+    user = crud.get_user_by_username(logged_in_user)
+
+    if logged_in_user is None:
+        flash('You must log in to leave a review!')
+    elif not review_left:
+        flash('You didn\'t leave a review..')
+    else:
+        #gets username and stores review if logged in
+        if shop is None:
+            crud.create_shop(shop_name, address, zip_code, yelp_id, phone)
+        return shop
+    return crud.create_review(user, shop, yelp_id, review_left)
+
+
+
+# @app.route('/leave-review/<yelp_id>', methods=["POST"])
+# def user_review(yelp_id):
+#     """Let user leave review for shop if they're logged in"""
+#     logged_in_user = session.get('user_username')
+#     review_left = request.form.get('review')
+
+#     if logged_in_user is None:
+#         flash('You must log in to leave a review!')
+#     elif not review_left:
+#         flash('You didn\'t leave a review')
+#     else:
+#         #gets username and review if logged in
+#         user = crud.get_user_by_username(logged_in_user)
+#         shop = crud.get_shop_by_yelp_id(yelp_id)
+
+#         #Checks if shop is in db from crud.get_shop_by_yelp_id
+#         if shop is None:
+#             add_shop()
+#         crud.create_review(user, shop, yelp_id, review_left)
+
+    # return ('Thanks for your review!')
 
 @app.route('/home')
-def homepage():
-    """Shows homepage"""
-
-#    if 'current_user' in session:
-#        user = crud.get_user_by_id(session['current_user'])
-#    else:
-#        user = None
-
+def home():
+    """ Shows homepage"""
     return render_template('homepage.html')
+
+
 
 @app.route('/shop')
 def show_shop_form():
     """Show shops search form"""
     return render_template('search-form.html')
-
-# @app.route('/shops')
-# def show_fav_shops():
-#     """Show favorited shops"""
-
-#     user = crud.get_user_by_id()
-#     reviews = user.reviews
-#     return render_template('fav-shops.html', user=user, reviews=reviews)
 
 
 @app.route('/users')
@@ -111,10 +148,6 @@ def show_user(user_id):
     reviews = user.reviews
 
     return render_template('user_details.html', user=user, reviews=reviews)
-
-# @app.route('/shop/search/<yelp_id>')
-# def show shop(yelp_id)
-
 
 
 @app.route('/shop/search')
@@ -156,6 +189,7 @@ def map_data():
 
     return jsonify(business_data)
 
+
 @app.route('/review/<yelp_id>')
 def reviews(yelp_id):
     """Search for shops on YELP by id"""
@@ -169,6 +203,8 @@ def reviews(yelp_id):
     business_info = response.json()
 
     return render_template('shop_details.html', business_info=business_info, yelp_id=yelp_id)
+
+
 
 
 

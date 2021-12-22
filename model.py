@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class User(db.Model):
-    """A user."""
+    """A user"""
 
     __tablename__ = 'users'
 
@@ -21,14 +21,14 @@ class User(db.Model):
 
 
 class Review(db.Model):
-    """Review and liked shops."""
+    """Shop reviews"""
 
     __tablename__ = 'reviews'
 
-    fav_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    review_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    yelp_id = db.Column(db.String(100), nullable=False)
     shop_id = db.Column(db.Integer, db.ForeignKey('shops.shop_id'), nullable=True)
+    yelp_id = db.Column(db.String(50), nullable=False)
     review = db.Column(db.String(500))
 
     def __repr__(self):
@@ -44,11 +44,12 @@ class Shop(db.Model):
     __tablename__ = 'shops'
 
     shop_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    yelp_id = db.Column(db.String(50), nullable=False)
     shop_name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(100), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
     phone = db.Column(db.String(20), nullable=False)
-    
+     
     # reviews = a list of Review objects
     def __repr__(self):
         return f'<Shop shop_id={self.shop_id} shop_name={self.shop_name}>'

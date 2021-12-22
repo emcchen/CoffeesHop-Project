@@ -24,14 +24,15 @@ with open('data/shops.json') as f:
 #use them to create fake reviews
 shops_in_db=[]
 for shop in shops_data:
-    shop_name, address, zip_code, phone = (
+    shop_name, address, zip_code, yelp_id, phone = (
       shop['shop_name'],
       shop['address'],
       shop['zip_code'],
+      shop['yelp_id'],
       shop['phone']
     )
 
-    db_shop = crud.create_shop(shop_name, address, zip_code, phone)
+    db_shop = crud.create_shop(shop_name, address, zip_code, yelp_id, phone)
     shops_in_db.append(db_shop)
 
 #Create 10 users.
@@ -46,5 +47,6 @@ for n in range(10):
     for _ in range(10):
       random_shop = choice(shops_in_db)
       review = 'This is a review for a test'
+      yelp_id = 'aKMxYmJxom1ZeYHpLgGy2g'
       
-      crud.create_review(user, random_shop, review)
+      crud.create_review(user, random_shop, yelp_id, review)

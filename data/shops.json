@@ -3,60 +3,70 @@
       "shop_name": "Coffee Bar",
       "address": "101 Montgomery St",
       "zip_code": "94104",
+      "yelp_id": "aKMxYmJxom1ZeYHpLgGy2g",
       "phone": "(415) 795-1214"
     },
     {
       "shop_name": "Cafe St. Jorge",
       "address": "3438 Mission St",
       "zip_code": "94110",
+      "yelp_id": "K8Fu4xrYFXphxudCoiAz_A",
       "phone": "(415) 814-2028"
     },
     {
       "shop_name": "Paris Baguette",
       "address": "550 Market St",
       "zip_code": "94104",
+      "yelp_id": "XM2yb3jqF01YUx__vARbZw",
       "phone": "(415) 757-0899"
     },
     {
       "shop_name": "Equator Coffees",
       "address": "222 2nd St",
       "zip_code": "94105",
+      "yelp_id": "5rvyNzIminCO4u-hyozv_w",
       "phone": "(415) 872-9482"
     },
     {
       "shop_name": "Bello Coffee & Tea",
       "address": "2885 Diamond St",
       "zip_code": "94131",
+      "yelp_id": "Evr0y8fwFEOqXBf7cNW8zg",
       "phone": "(415) 585-3457"
     },
     {
       "shop_name": "Jackson Place Cafe",
       "address": "101 Montgomery St",
       "zip_code": "94104",
+      "yelp_id": "HRyBoh32eQDJ1MPWFHlGpg",
       "phone": "(415) 795-1214"
     },
     {
       "shop_name": "Philz Coffee",
       "address": "1 Front St",
       "zip_code": "94111",
+      "yelp_id": "afDaXKW7-juSg2wd7jxWmA",
       "phone": "(415) 568-2535"
     },
     {
       "shop_name": "Cup Cafe",
       "address": "6 Monterey Blvd",
       "zip_code": "94131",
+      "yelp_id": "hw5CNSJl90wD9Z8KYGNeEA",
       "phone": "(415) 111-1111"
     },
     {
       "shop_name": "Flour & Branch",
       "address": "493 3rd St",
       "zip_code": "94107",
+      "yelp_id": "UYVG3swqI63koq4s-VJp5g",
       "phone": "(415) 658-7217"
     },
     {
       "shop_name": "Tea Hut",
       "address": "1541 Sloat Blvd",
       "zip_code": "94132",
+      "yelp_id": "W7MHV3wkXnrp6o3YvkdSXQ",
       "phone": "(415) 795-1214"
     }
   ]

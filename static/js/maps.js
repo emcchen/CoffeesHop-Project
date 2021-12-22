@@ -11,7 +11,6 @@ function initMap() {
       zoom: 10,
       zoomControl: true,
       panControl: false,
-      styles: MAPSTYLES
     });
 
     // A single InfoWindow instance 
