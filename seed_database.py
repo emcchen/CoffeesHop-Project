@@ -44,9 +44,9 @@ for n in range(10):
 
     user = crud.create_user(username, email, password)
     
-    for _ in range(10):
-      random_shop = choice(shops_in_db)
-      review = 'This is a review for a test'
-      yelp_id = 'aKMxYmJxom1ZeYHpLgGy2g'
+    # for _ in range(2):
+    #   random_shop = choice(shops_in_db)
+    #   review = 'This is a review for a test'
+    #   yelp_id = 'aKMxYmJxom1ZeYHpLgGy2g'
       
-      crud.create_review(user, random_shop, yelp_id, review)
+    #   crud.create_review(user, random_shop, yelp_id, review)

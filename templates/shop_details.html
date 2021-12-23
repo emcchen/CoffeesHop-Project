@@ -55,13 +55,23 @@
 </div> 
 
 <form id="leave-review" method="POST">
+    <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
     <p>
-        <input type="text" name="review" size="100">
+        <input id="reviewed" type="text" name="review" size="100">
     </p>
     <p>
-        <button type="submit">Submit Review</button>
+        <button type="submit">Submit a review</button>
     </p>
 </form>
+
+<div>
+Reviews:
+    <ul>
+        {% for review in shop_reviews %}
+            {{ review }}
+        {% endfor %}
+    </ul>
+</div>
 
 <script src="/static/js/review.js"></script>
 

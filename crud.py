@@ -23,13 +23,17 @@ def get_user_by_id(user_id):
     """Returns a user by user id"""
     return User.query.get(user_id)
 
+def get_reviews_by_yelp_id(yelp_id):
+    """ Returns all reviews by yelp_id """
+    return Review.query.filter(Review.yelp_id == yelp_id).all()
+
 def get_user_by_username(username):
     """Returns a user by their username"""
     return User.query.filter(User.username==username).first()
 
 
 def create_review(user, shop, yelp_id, review):
-    """Create and return new review shop"""
+    """Create new review"""
     new_review = Review(user=user, shop=shop, yelp_id=yelp_id, review=review)
 
     db.session.add(new_review)
@@ -57,7 +61,7 @@ def create_shop(shop_name, address, zip_code, yelp_id, phone):
 
 def get_shop_by_yelp_id(yelp_id):
     """ Check if there is a shop matching the yelp_id"""
-    return Shop.query.filter(Shop.yelp_id == yelp_id)
+    return Shop.query.filter(Shop.yelp_id == yelp_id).first()
 
 
 

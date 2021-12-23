@@ -10,7 +10,9 @@ button.addEventListener('submit', evt => {
         address: document.querySelector('#store_address').value,
         zip: document.querySelector('#store_zip').value,
         phone: document.querySelector('#store_phone').value,
-        id: location.pathname.split('/')[2]
+        id: location.pathname.split('/')[2],
+        review: document.querySelector('#reviewed').value,
+        user: document.querySelector('#hidden-user').value
     };
 
     fetch('/new-shop', {
@@ -19,9 +21,21 @@ button.addEventListener('submit', evt => {
         headers: {
             'Content-Type': 'application/json',
         },
-    });
-
+    })
+      .then(response => response.text()) 
+      .then(responseData => { 
+          console.log(responseData)
+          if (responseData == 'Review created') {
+              alert('Thanks');
+              document.querySelector('ul').insertAdjacentHTML('afterbegin', `<li> ${storeDetails.review} </li>`);
+            }
+      })
+    //   .then(responseData => {
+    //       document.querySelector('ul').insertAdjacentHTML('afterbegin', <li>review</li>)
+    //     });
+//      .then display reviews associated w/ shop?
 });
+
 
 
 

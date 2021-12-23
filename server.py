@@ -79,46 +79,30 @@ def add_shop():
     zip_code = request.json.get('zip')
     phone = request.json.get('phone')
     yelp_id = request.json.get('id')
+    review = request.json.get('review')
+    logged_in_user = request.json.get('user')
 
-    logged_in_user = session.get('user_username')
-    review_left = request.form.get('review')
     shop = crud.get_shop_by_yelp_id(yelp_id)
     user = crud.get_user_by_username(logged_in_user)
 
+
     if logged_in_user is None:
-        flash('You must log in to leave a review!')
-    elif not review_left:
-        flash('You didn\'t leave a review..')
+        return 'You must log in to leave a review!'
+    elif not review:
+        return 'You didn\'t leave a review..'
+    # user is logged in and leaving review
     else:
-        #gets username and stores review if logged in
+        #if shop not in db, create shop and save in db, along with user's review
+        #Display associated review in frontend
         if shop is None:
-            crud.create_shop(shop_name, address, zip_code, yelp_id, phone)
-        return shop
-    return crud.create_review(user, shop, yelp_id, review_left)
+            shop = crud.create_shop(shop_name, address, zip_code, yelp_id, phone)
+        crud.create_review(user, shop, yelp_id, review)
+        return 'Review created'
+        #if shop in db, save user's review in db and display associated reviews in frontend
+        #save logged in user's review & display in frontend
 
 
 
-# @app.route('/leave-review/<yelp_id>', methods=["POST"])
-# def user_review(yelp_id):
-#     """Let user leave review for shop if they're logged in"""
-#     logged_in_user = session.get('user_username')
-#     review_left = request.form.get('review')
-
-#     if logged_in_user is None:
-#         flash('You must log in to leave a review!')
-#     elif not review_left:
-#         flash('You didn\'t leave a review')
-#     else:
-#         #gets username and review if logged in
-#         user = crud.get_user_by_username(logged_in_user)
-#         shop = crud.get_shop_by_yelp_id(yelp_id)
-
-#         #Checks if shop is in db from crud.get_shop_by_yelp_id
-#         if shop is None:
-#             add_shop()
-#         crud.create_review(user, shop, yelp_id, review_left)
-
-    # return ('Thanks for your review!')
 
 @app.route('/home')
 def home():
@@ -145,9 +129,9 @@ def show_user(user_id):
     """Show user details"""
 
     user = crud.get_user_by_id(user_id)
-    reviews = user.reviews
+    user_reviews = user.reviews
 
-    return render_template('user_details.html', user=user, reviews=reviews)
+    return render_template('user_details.html', user=user, reviews=user_reviews)
 
 
 @app.route('/shop/search')
@@ -202,9 +186,13 @@ def reviews(yelp_id):
     #convert JSON string to a Dictionary
     business_info = response.json()
 
-    return render_template('shop_details.html', business_info=business_info, yelp_id=yelp_id)
+    shop_reviews = crud.get_reviews_by_yelp_id(yelp_id)
 
-
+    return render_template('shop_details.html',
+                           business_info=business_info,
+                           yelp_id=yelp_id,
+                           shop_reviews=shop_reviews,
+                           reviews=reviews)
 
 
 
