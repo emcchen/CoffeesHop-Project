@@ -20,11 +20,11 @@ app.secret_key = "SECRET"
 app.jinja_env.undefined = StrictUndefined
 
 
-
 @app.route('/')
 def loginpage():
     """First page that logs users in"""
     return render_template('login.html')
+    
 
 @app.route('/register')
 def register():
@@ -63,11 +63,17 @@ def gets_user():
     #Checks username and password with db
     if user and user.password == password:
         session['current_user'] = user.username
-        flash(f'Welcome back, {user.username} :) ')
+        flash(f'You\'re logged in, {user.username} :) ')
         return redirect('/home')
     else:
         flash('The email or password you entered was incorrect.')
         return redirect('/')
+
+@app.route('/logout')
+def logout():
+    """Clears session and returns to homepage"""
+    session.clear()
+    return redirect('/')
 
 
 @app.route('/new-shop', methods=["POST"])
@@ -102,20 +108,15 @@ def add_shop():
         #save logged in user's review & display in frontend
 
 
-
-
 @app.route('/home')
 def home():
     """ Shows homepage"""
     return render_template('homepage.html')
 
-
-
 @app.route('/shop')
 def show_shop_form():
     """Show shops search form"""
     return render_template('search-form.html')
-
 
 @app.route('/users')
 def all_users():
@@ -132,7 +133,6 @@ def show_user(user_id):
     user_reviews = user.reviews
 
     return render_template('user_details.html', user=user, reviews=user_reviews)
-
 
 @app.route('/shop/search')
 def find_shops():
@@ -152,9 +152,9 @@ def yelp_searches(zipcode):
                   'location': zipcode,
                   'radius': 10000,
                   'limit': 50,
-                  'offset':50,
+                  'offset':1,
                   'sort_by': 'distance',
-                  'categories': 'coffeeshops,coffee,coffeeroasteries, cafes',
+                  'categories': 'cafes, coffeeroasteries',
                   'attributes': 'open_to_all,gender_neutral_restrooms'
                   }
 

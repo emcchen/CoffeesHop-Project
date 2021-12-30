@@ -1,39 +1,26 @@
 {% extends 'base.html' %}
 
-{% block head %}
-Please login or signup below.
 
-<!-- Insert login form here-->
+{% block content %}
+      <!--<img src="img url here" /> -->
 
-<div class="coffee-loginpage">
-
-    <h1>CoffeesHop</h1>
-    <p> 
-    </p>
-  
-    <!--<img src="img url here" /> -->
-    <p>
-    </p>
-
-    <h2>Log In</h2>
-    <form action="/get-user" method="POST">
-      <p>
-        Username <input type="text" name="username" required>
-      </p>
-  
-      <p>
-        Password <input type="password" name="password" required>
-      </p>
-  
-      <p>
-        <button type="submit">Sign In</button>
-      </p>
-    </form>
+  <div class="container text-center">
+      <b>Please login or signup below.</b>
+      <h2>Log In</h2>
+      <form action="/get-user" method="POST">
+        <p>
+          Username <input type="text" name="username" required>
+        </p>
     
-
-    <div>
-    <A HREF='/register'> Click here to register </A>
-    </div>
+        <p>
+          Password <input type="password" name="password" required>
+        </p>
+    
+        <div>
+          <button type="submit" class="btn btn-outline-dark">Sign In</button>
+        </div>
+      </form>
+  </div>
 
 {% endblock %}
 

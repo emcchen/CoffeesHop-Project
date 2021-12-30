@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block head %}
-<h1> Welcome back {{ session['current_user'] }}!</h1>
-{% endblock %}
 
 {% block content %}
+  <div class="container">
+    <b> Welcome back {{ session["current_user"] }}! </b>
+
     <b>What would you like to do?</b>
     <ul>
         <li><a href="/shop"> Search for coffee shops</a></li>

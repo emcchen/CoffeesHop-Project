@@ -21,7 +21,7 @@ function initMap() {
     fetch(`/map?zipcode=${zipCode}`)
     .then(response => response.json())
     .then(business_data => {
-      for (const bis of business_data['businesses']) {
+      for (const bis of business_data.businesses) {
         // Define the content of the infoWindow
         const shopInfoContent = `
         <div class="window-content">
@@ -32,22 +32,22 @@ function initMap() {
             />
           </div>
 
-          <ul class="shop-info">
-            <li><b>Term: </b>${bis['location']}</li>
-            <li><b>Location: </b>${bis['coordinates']['latitude']}, ${bis['coordinates']['longitude']}</li>
-          </ul>
+          <div class="map-shop-info">
+            <b>${bis.name}</b> <br></br>
+            <b>Address: </b>${bis.location.address1}, ${bis.location.zip_code}
+          </div>
         </div>
       `;
 
         const shopMarker = new google.maps.Marker({
           position: {
-            lat: bis['coordinates']['latitude'],
-            lng: bis['coordinates']['longitude'],
+            lat: bis.coordinates.latitude,
+            lng: bis.coordinates.longitude,
           },
          // Shows shop ID when hovering over it 
-          title: `Shop ID: ${bis['rating']}`,
+          title: `Shop ID: ${bis.rating}`,
           icon: {
-            url: '/static/img/polarBear.svg',
+            url: '/static/img/tea-cup.svg',
             scaledSize: new google.maps.Size(50, 50),
           },
           map, // same as saying map: map

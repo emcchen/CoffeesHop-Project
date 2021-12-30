@@ -1,43 +1,48 @@
 {% extends 'base.html' %}
 
 
-{% block head %} 
-    <h1>What are you feeling today?</h1>
-{% endblock %}
-
 {% block content %}
 <div class='container'>
+    What are you feeling today?
     <div>
         <a href='/shop'>
             Go back to search form
         </a>
     </div>
-</div>
-<p class='zipcode' id={{zipcode}}>
-    Search results for zipcode: {{ zipcode }}
-</p>
+    <p class='zipcode' id={{zipcode}}>
+        Search results for zipcode: {{ zipcode }}
+    </p>
+    <p>
+        {% if business_data['total'] is defined %}
+            Total matches: {{ business_data['total'] }}
+        {% else %}
+            Total matches: 0
+        {% endif %}
+    </p>
    
 
-<div class= results>
-    {% for bis in business_data['businesses'] %}
-        <A HREF="/review/{{bis['id']}}"> {{ bis['name'] }} </A>
+    <div class= results>
+        {% for bis in business_data['businesses'] %}
+            <A HREF="/review/{{bis['id']}}"> {{ bis['name'] }} </A>
 
-                <div>
-                    {{ bis['categories'][0]['title'] }}
-                </div>
-                <div>
-                   {{ bis['display_phone'] }}
-                </div>   
-                <div>
-                    Rating Score: {{ bis['rating'] }}
-                </div>
-                <div>
-                    <img src="{{ bis['image_url'] }}" />
-                </div>
-                <p></p>
-    
-    {% endfor %}
-    
+                    <div>
+                        {{ bis['categories'][0]['title'] }}
+                    </div>
+                    <div>
+                    {{ bis['display_phone'] }}
+                    </div>   
+                    <div>
+                        Rating Score: {{ bis['rating'] }}
+                    </div>
+                    <div>
+                        <img src="{{ bis['image_url'] }}" />
+                    </div>
+                    <p></p>
+        
+        {% endfor %}
+        
+
+    </div>
 
 </div>
 

@@ -26,7 +26,7 @@ button.addEventListener('submit', evt => {
       .then(responseData => { 
           console.log(responseData)
           if (responseData == 'Review created') {
-              alert('Thanks');
+              alert('Thanks for your review!');
               document.querySelector('ul').insertAdjacentHTML('afterbegin', `<li> ${storeDetails.review} </li>`);
             }
       })

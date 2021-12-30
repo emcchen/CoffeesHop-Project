@@ -57,7 +57,7 @@
 <form id="leave-review" method="POST">
     <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
     <p>
-        <input id="reviewed" type="text" name="review" size="100">
+        <textarea id="reviewed" style="margin: 0px; height: 100px; width: 310px; resize:none;"></textarea>
     </p>
     <p>
         <button type="submit">Submit a review</button>
