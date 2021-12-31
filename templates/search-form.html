@@ -4,31 +4,22 @@
 
 {% block content %}
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>Search for Shops!</h2>
+  <h2>Search for Shops!</h2>
 
-      <form method="GET" action="/shop/search">
-        <div class="row">
-          <label class="form-label" for="search-zip">Zip Code</label>
+    <form method="GET" action="/shop/search">
+      <label class="form-label" for="search-zip">Enter Zip Code:</label>
 
+        <div class="input-group">
           <input
-            id="search-zip"
-            class="form-control"
-            type="text"
-            name="zipcode"
-          >
+              id="search-zip"
+              class="form-control"
+              type="text"
+              name="zipcode"
+              placeholder="Zip Code"
+              required
+            >
         </div>
-            <input type="submit" value="Look for shops" class="button">
-          </div>
-        </div>
-      </form>
-        <div>
-          <a href='/home'>
-            Go back to your home page
-          </a>
-      </div>
-    </div>
-  </div>
+          <input type="submit" value="Look for shops" class="button"> 
+    </form>
 </div>
 {% endblock %}

@@ -1,0 +1,10 @@
+body {
+    background-image: url("/static/img/wood.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.carousel-item {
+    height: 450px;
+}

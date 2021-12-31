@@ -1,76 +1,77 @@
 {% extends 'base.html' %}
-{% block head %} 
+
+{% block content %}
+<div class="container">
     <div id="store_name">
         <h1> {{ business_info['name'] }} </h1>
     </div>
-{% endblock %}
 
-{% block content %}
-<div class= info>
-    <div>
-        {% if business_info['price'] is defined %}
-            {{ business_info['price']}}
-        {% endif %}
-    </div>
-    <div id="store_address">
-        {{ business_info['location']['display_address'][0] }}
-    </div>
-    <div id="store_zip">
-        {{ business_info['location']['display_address'][1] }}
-    </div>
-    <div id="store_phone">
-        {{ business_info['display_phone'] }}
-    </div>
-
-    <p></p>
-
-    <div>
-        <b>Hours:</b> 
+    <div class= info>
         <div>
-        Monday: {{ business_info['hours'][0]['open'][0]['start']}} - {{ business_info['hours'][0]['open'][0]['end']}}
-        </div>
-        <div>
-        Tuesday: {{ business_info['hours'][0]['open'][1]['start']}} - {{ business_info['hours'][0]['open'][1]['end']}}
-        </div>
-        <div>
-        Wednesday: {{ business_info['hours'][0]['open'][2]['start']}} - {{ business_info['hours'][0]['open'][2]['end']}}
-        </div>
-        <div>
-        Thursday: {{ business_info['hours'][0]['open'][3]['start']}} - {{ business_info['hours'][0]['open'][3]['end']}}
-        </div>
-        <div>
-        Friday: {{ business_info['hours'][0]['open'][4]['start']}} - {{ business_info['hours'][0]['open'][4]['end']}}
-        </div>
-        <div>
-            {% if business_info['hours'][0]['open'][5] is defined %}
-                Saturday: {{ business_info['hours'][0]['open'][5]['start']}} - {{ business_info['hours'][0]['open'][5]['end']}}
-            {% endif %}    
-        </div>
-        <div>
-            {% if business_info['hours'][0]['open'][6] is defined %}
-                Sunday: {{ business_info['hours'][0]['open'][6]['start']}} - {{ business_info['hours'][0]['open'][6]['end']}}
+            {% if business_info['price'] is defined %}
+                {{ business_info['price']}}
             {% endif %}
         </div>
+        <div id="store_address">
+            {{ business_info['location']['display_address'][0] }}
+        </div>
+        <div id="store_zip">
+            {{ business_info['location']['display_address'][1] }}
+        </div>
+        <div id="store_phone">
+            {{ business_info['display_phone'] }}
+        </div>
+
+        <p></p>
+
+        <div>
+            <b>Hours:</b> 
+            <div>
+            Monday: {{ business_info['hours'][0]['open'][0]['start']}} - {{ business_info['hours'][0]['open'][0]['end']}}
+            </div>
+            <div>
+            Tuesday: {{ business_info['hours'][0]['open'][1]['start']}} - {{ business_info['hours'][0]['open'][1]['end']}}
+            </div>
+            <div>
+            Wednesday: {{ business_info['hours'][0]['open'][2]['start']}} - {{ business_info['hours'][0]['open'][2]['end']}}
+            </div>
+            <div>
+            Thursday: {{ business_info['hours'][0]['open'][3]['start']}} - {{ business_info['hours'][0]['open'][3]['end']}}
+            </div>
+            <div>
+            Friday: {{ business_info['hours'][0]['open'][4]['start']}} - {{ business_info['hours'][0]['open'][4]['end']}}
+            </div>
+            <div>
+                {% if business_info['hours'][0]['open'][5] is defined %}
+                    Saturday: {{ business_info['hours'][0]['open'][5]['start']}} - {{ business_info['hours'][0]['open'][5]['end']}}
+                {% endif %}    
+            </div>
+            <div>
+                {% if business_info['hours'][0]['open'][6] is defined %}
+                    Sunday: {{ business_info['hours'][0]['open'][6]['start']}} - {{ business_info['hours'][0]['open'][6]['end']}}
+                {% endif %}
+            </div>
+        </div>
+    </div> 
+
+    <form id="leave-review" method="POST">
+        <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
+        <p>
+            <textarea id="reviewed" style="margin: 0px; height: 100px; width: 310px; resize:none;"></textarea>
+        </p>
+        <p>
+            <button type="submit">Submit a review</button>
+        </p>
+    </form>
+
+    <div>
+    Reviews:
+        <ul>
+            {% for review in shop_reviews %}
+                {{ review }}
+            {% endfor %}
+        </ul>
     </div>
-</div> 
-
-<form id="leave-review" method="POST">
-    <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
-    <p>
-        <textarea id="reviewed" style="margin: 0px; height: 100px; width: 310px; resize:none;"></textarea>
-    </p>
-    <p>
-        <button type="submit">Submit a review</button>
-    </p>
-</form>
-
-<div>
-Reviews:
-    <ul>
-        {% for review in shop_reviews %}
-            {{ review }}
-        {% endfor %}
-    </ul>
 </div>
 
 <script src="/static/js/review.js"></script>

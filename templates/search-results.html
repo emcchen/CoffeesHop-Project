@@ -23,7 +23,7 @@
 
     <div class= results>
         {% for bis in business_data['businesses'] %}
-            <A HREF="/review/{{bis['id']}}"> {{ bis['name'] }} </A>
+            <a href="/review/{{bis['id']}}"> {{ bis['name'] }} </a>
 
                     <div>
                         {{ bis['categories'][0]['title'] }}
@@ -46,10 +46,12 @@
 
 </div>
 
-<section class="map">
-    <div id="map"></div>
-    <link rel="stylesheet" href="/static/css/maps.css">
-</section>
+<div class="container">
+    <section class="map">
+        <div id="map"></div>
+        <link rel="stylesheet" href="/static/css/maps.css">
+    </section>
+</div>
 
 <script src="/static/js/mapStyles.js"></script>
 <script src="/static/js/maps.js"></script>

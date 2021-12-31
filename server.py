@@ -24,13 +24,11 @@ app.jinja_env.undefined = StrictUndefined
 def loginpage():
     """First page that logs users in"""
     return render_template('login.html')
-    
 
 @app.route('/register')
 def register():
     """Redirect to register new user page"""
     return render_template('register.html')
-    
 
 @app.route('/register-user', methods=['POST'])
 def register_user():
@@ -183,7 +181,8 @@ def reviews(yelp_id):
 
 
     response = requests.get(url = endpoint, headers = headers)
-    #convert JSON string to a Dictionary
+    #convert JSON string to a Di
+    # ctionary
     business_info = response.json()
 
     shop_reviews = crud.get_reviews_by_yelp_id(yelp_id)
