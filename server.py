@@ -116,6 +116,17 @@ def show_shop_form():
     """Show shops search form"""
     return render_template('search-form.html')
 
+@app.route('/reviewed')
+def user_reviewed():
+    """Shows current user's reviewed shops"""
+    username = session['current_user']
+    user = crud.get_user_by_username(username)
+    user_reviews = user.reviews
+
+    return render_template('reviewed_shops.html',
+                            user_reviews=user_reviews,
+                            user=user)
+
 @app.route('/users')
 def all_users():
     """View all users"""
@@ -130,7 +141,9 @@ def show_user(user_id):
     user = crud.get_user_by_id(user_id)
     user_reviews = user.reviews
 
-    return render_template('user_details.html', user=user, reviews=user_reviews)
+    return render_template('user_details.html',
+                            user=user,
+                            reviews=user_reviews)
 
 @app.route('/shop/search')
 def find_shops():
@@ -139,7 +152,8 @@ def find_shops():
     business_data= yelp_searches(zipcode)
 
     return render_template('search-results.html',
-                            business_data=business_data, zipcode=zipcode)
+                            business_data=business_data,
+                            zipcode=zipcode)
 
 def yelp_searches(zipcode):
     """Search for shops on YELP"""
@@ -148,7 +162,7 @@ def yelp_searches(zipcode):
     headers = {'Authorization': f'bearer {api_key}'}
     parameters = {'term': 'coffee',
                   'location': zipcode,
-                  'radius': 10000,
+                  'radius': 16000,
                   'limit': 50,
                   'offset':1,
                   'sort_by': 'distance',
@@ -181,11 +195,11 @@ def reviews(yelp_id):
 
 
     response = requests.get(url = endpoint, headers = headers)
-    #convert JSON string to a Di
-    # ctionary
+    #convert JSON string to a Dictionary
     business_info = response.json()
 
     shop_reviews = crud.get_reviews_by_yelp_id(yelp_id)
+
 
     return render_template('shop_details.html',
                            business_info=business_info,

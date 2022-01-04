@@ -2,7 +2,88 @@
 
 
 {% block content %}
-<div class='container'>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
+  <div class="container">
+      <a class="navbar-brand">CoffeesHop</a>
+
+      <button
+         class="navbar-toggler"
+         type="button"
+         data-bs-toggle="collapse"
+         data-bs-target="#navmenu"
+      >
+          <span class="navbar-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                  <a href="/home" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a href="/shop" class="nav-link">Search</a>
+              </li>
+              <li>
+                  <a href="/logout" class="nav-link">Log out</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<div class="container">
+    What are you feeling today?
+    <div class="row">
+        <p class="zipcode" id={{zipcode}}>
+            Search results for zipcode: {{ zipcode }}
+        </p>
+        <p>
+            {% if business_data['total'] is defined %}
+                Total matches: {{ business_data['total'] }}
+            {% else %}
+                Total matches: 0
+            {% endif %}
+        </p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <ol>
+                {% for bis in business_data['businesses'] %}
+                <li><a href="/review/{{bis['id']}}"> {{ bis['name'] }} </a></li>
+                <div>
+                    {{ bis['categories'][0]['title'] }}
+                </div>
+                <div>
+                    {{ bis['display_phone'] }}
+                </div>   
+                <div>
+                    Rating Score: {{ bis['rating'] }}
+                </div>
+                <div class="shop-images">
+                    <img src="{{ bis['image_url'] }}" />
+                </div>
+                <p></p>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <section class="map">
+                <div id="map"></div>
+                <link rel="stylesheet" href="/static/css/maps.css">
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- <div class='container'>
     What are you feeling today?
     <div>
         <a href='/shop'>
@@ -22,36 +103,32 @@
    
 
     <div class= results>
-        {% for bis in business_data['businesses'] %}
-            <a href="/review/{{bis['id']}}"> {{ bis['name'] }} </a>
-
-                    <div>
-                        {{ bis['categories'][0]['title'] }}
-                    </div>
-                    <div>
+        <ol>
+            {% for bis in business_data['businesses'] %}
+                <li><a href="/review/{{bis['id']}}"> {{ bis['name'] }} </a></li>
+                <div>
+                    {{ bis['categories'][0]['title'] }}
+                </div>
+                <div>
                     {{ bis['display_phone'] }}
-                    </div>   
-                    <div>
-                        Rating Score: {{ bis['rating'] }}
-                    </div>
-                    <div>
-                        <img src="{{ bis['image_url'] }}" />
-                    </div>
-                    <p></p>
-        
-        {% endfor %}
-        
-
+                </div>   
+                <div>
+                    Rating Score: {{ bis['rating'] }}
+                </div>
+                <div>
+                    <img src="{{ bis['image_url'] }}" />
+                </div>
+                <p></p>
+            {% endfor %}    
+        </ol>
     </div>
-
-</div>
-
-<div class="container">
     <section class="map">
         <div id="map"></div>
         <link rel="stylesheet" href="/static/css/maps.css">
     </section>
-</div>
+</div> -->
+
+
 
 <script src="/static/js/mapStyles.js"></script>
 <script src="/static/js/maps.js"></script>
@@ -60,4 +137,7 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZmQ10tNqdUC0aaySBGl4N8AcY8f-_2js&callback=initMap">
 </script>
 
+
 {% endblock %}
+
+

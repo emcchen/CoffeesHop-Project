@@ -2,16 +2,67 @@
 
 
 {% block content %}
+
+<nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
   <div class="container">
-    <b> Welcome back {{ session["current_user"] }}! </b>
+      <a class="navbar-brand">CoffeesHop</a>
+
+      <button
+         class="navbar-toggler"
+         type="button"
+         data-bs-toggle="collapse"
+         data-bs-target="#navmenu"
+      >
+          <span class="navbar-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                  <a href="/home" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a href="/shop" class="nav-link">Search</a>
+              </li>
+              <li>
+                  <a href="/logout" class="nav-link">Log out</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+
+  <div class="container text-center text-light">
+    <h1> Welcome back {{ session["current_user"] }}! </h1>
 
     <b>What would you like to do?</b>
     <ul>
-        <li><a href="/shop"> Search for coffee shops</a></li>
-        <li><a href="/shops">View reviewed coffee shops</a></li>
+        <li><a href="/reviewed">View reviewed coffee shops</a></li>
         <li><a href="/users">View all users</a></li>
     </ul>
 
     <a href="/logout"> Log Out.</a>
   </div>
+
+  <div class="container">
+    <h2>Search for Shops!</h2>
+  
+      <form method="GET" action="/shop/search">
+        <label class="form-label" for="search-zip">Enter Zip Code:</label>
+  
+          <div class="input-group">
+            <input
+                id="search-zip"
+                class="form-control"
+                type="text"
+                name="zipcode"
+                placeholder="Zip Code"
+                required
+              >
+          </div>
+            <input type="submit" value="Look for shops" class="button"> 
+      </form>
+  </div>
+
 {% endblock %}

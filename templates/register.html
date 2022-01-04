@@ -1,28 +1,49 @@
  {% extends 'base.html' %}
 
-{% block head %}
+{% block content %}
+<nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
+  <div class="container">
+      <a class="navbar-brand">CoffeesHop</a>
 
-<h2>Create an Account</h2>
-<form action="/register-user" method="POST">
-  <p>
-    Username <input type="text" name="username" required>
-  </p>
-<!--<label for='user'><b>Username:</b></label>
-<input type='text' placeholder='Enter a username' name='username' id='username' required>-->
+      <button
+         class="navbar-toggler"
+         type="button"
+         data-bs-toggle="collapse"
+         data-bs-target="#navmenu"
+      >
+          <span class="navbar-icon"></span>
+      </button>
 
-  <p>
-    Email <input type="text" name = "email" required>
-  </p>
+      <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li>
+              <a href="/" class="nav-link">Sign In</a>
+            </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+<div class="container text-center">
+  <h2>Create an Account</h2>
+  <form action="/register-user" method="POST">
+    <p>
+      Username <input type="text" name="username" required>
+    </p>
+    <p>
+      Email <input type="text" name = "email" required>
+    </p>
 
-  <p>
-    Password <input type="password" name="password" required>
-  </p>
+    <p>
+      Password <input type="password" name="password" required>
+    </p>
 
-  <p>
-    <button type="submit">Register</button>
-  </p>
-</form>
+    <p>
+      <button type="submit">Register</button>
+    </p>
+  </form>
 
-<A HREF='/'> Click here to return to login </A>
+  <A HREF='/'> Click here to return to login </A>
+
+</div>
 
 {% endblock %}

@@ -32,7 +32,9 @@ class Review(db.Model):
     review = db.Column(db.String(500))
 
     def __repr__(self):
-        return f'<shop_id={self.shop_id} the review={self.review}>'
+        return f'"{self.review}"'
+
+
 
 #reviews attribute in User and Shop objects that'll return list of Review.
     user = db.relationship('User', backref='reviews')
@@ -49,7 +51,7 @@ class Shop(db.Model):
     address = db.Column(db.String(100), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
     phone = db.Column(db.String(20), nullable=False)
-     
+    
     # reviews = a list of Review objects
     def __repr__(self):
         return f'<Shop shop_id={self.shop_id} shop_name={self.shop_name}>'

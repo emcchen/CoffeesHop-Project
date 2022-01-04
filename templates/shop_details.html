@@ -1,7 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
+    <div class="container">
+        <a class="navbar-brand">CoffeesHop</a>
+  
+        <button
+           class="navbar-toggler"
+           type="button"
+           data-bs-toggle="collapse"
+           data-bs-target="#navmenu"
+        >
+            <span class="navbar-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="/home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/shop" class="nav-link">Search</a>
+                </li>
+                <li>
+                    <a href="/logout" class="nav-link">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container text-light">
     <div id="store_name">
         <h1> {{ business_info['name'] }} </h1>
     </div>
@@ -13,10 +43,12 @@
             {% endif %}
         </div>
         <div id="store_address">
-            {{ business_info['location']['display_address'][0] }}
+            {{ business_info['location']['display_address'][0] }}, 
+            {{business_info['location']['city'] }},
+            {{ business_info['location']['state'] }}
         </div>
         <div id="store_zip">
-            {{ business_info['location']['display_address'][1] }}
+            {{ business_info['location']['zip_code'] }}
         </div>
         <div id="store_phone">
             {{ business_info['display_phone'] }}
@@ -57,7 +89,7 @@
     <form id="leave-review" method="POST">
         <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
         <p>
-            <textarea id="reviewed" style="margin: 0px; height: 100px; width: 310px; resize:none;"></textarea>
+            <textarea id="reviewed" type="text" style="margin: 0px; height: 100px; width: 310px; resize:none;"></textarea>
         </p>
         <p>
             <button type="submit">Submit a review</button>
@@ -68,7 +100,7 @@
     Reviews:
         <ul>
             {% for review in shop_reviews %}
-                {{ review }}
+                <li> {{ review }} </li>
             {% endfor %}
         </ul>
     </div>

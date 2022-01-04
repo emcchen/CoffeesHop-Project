@@ -6,10 +6,10 @@ button.addEventListener('submit', evt => {
     evt.preventDefault();
 
     const storeDetails = {
-        name: document.querySelector('#store_name').value,
-        address: document.querySelector('#store_address').value,
-        zip: document.querySelector('#store_zip').value,
-        phone: document.querySelector('#store_phone').value,
+        name: document.querySelector('#store_name').innerText,
+        address: document.querySelector('#store_address').innerText,
+        zip: document.querySelector('#store_zip').innerText,
+        phone: document.querySelector('#store_phone').innerText,
         id: location.pathname.split('/')[2],
         review: document.querySelector('#reviewed').value,
         user: document.querySelector('#hidden-user').value
@@ -30,10 +30,6 @@ button.addEventListener('submit', evt => {
               document.querySelector('ul').insertAdjacentHTML('afterbegin', `<li> ${storeDetails.review} </li>`);
             }
       })
-    //   .then(responseData => {
-    //       document.querySelector('ul').insertAdjacentHTML('afterbegin', <li>review</li>)
-    //     });
-//      .then display reviews associated w/ shop?
 });
 
 
