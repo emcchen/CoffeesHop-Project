@@ -21,9 +21,6 @@
               <li class="nav-item">
                   <a href="/home" class="nav-link">Home</a>
               </li>
-              <li class="nav-item">
-                  <a href="/shop" class="nav-link">Search</a>
-              </li>
               <li>
                   <a href="/logout" class="nav-link">Log out</a>
               </li>
@@ -32,7 +29,10 @@
   </div>
 </nav>
 
-<div class="container">
+<button id="geocode-address"> Geocode Address </button>
+
+
+<div class="container custom-scrollbar">
     What are you feeling today?
     <div class="row">
         <p class="zipcode" id={{zipcode}}>
@@ -49,7 +49,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 col-md-6">
+        <div class="box col-lg-6 col-md-6 text-center" id="scroll">
             <ol>
                 {% for bis in business_data['businesses'] %}
                 <li><a href="/review/{{bis['id']}}"> {{ bis['name'] }} </a></li>
@@ -62,14 +62,14 @@
                 <div>
                     Rating Score: {{ bis['rating'] }}
                 </div>
-                <div class="shop-images">
+                <div class="yelp-images">
                     <img src="{{ bis['image_url'] }}" />
                 </div>
                 <p></p>
                 {% endfor %}
             </ol>
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="box col-lg-6 col-md-6">
             <section class="map">
                 <div id="map"></div>
                 <link rel="stylesheet" href="/static/css/maps.css">
@@ -78,59 +78,6 @@
     </div>
 </div>
 
-
-
-
-
-
-<!-- <div class='container'>
-    What are you feeling today?
-    <div>
-        <a href='/shop'>
-            Go back to search form
-        </a>
-    </div>
-    <p class='zipcode' id={{zipcode}}>
-        Search results for zipcode: {{ zipcode }}
-    </p>
-    <p>
-        {% if business_data['total'] is defined %}
-            Total matches: {{ business_data['total'] }}
-        {% else %}
-            Total matches: 0
-        {% endif %}
-    </p>
-   
-
-    <div class= results>
-        <ol>
-            {% for bis in business_data['businesses'] %}
-                <li><a href="/review/{{bis['id']}}"> {{ bis['name'] }} </a></li>
-                <div>
-                    {{ bis['categories'][0]['title'] }}
-                </div>
-                <div>
-                    {{ bis['display_phone'] }}
-                </div>   
-                <div>
-                    Rating Score: {{ bis['rating'] }}
-                </div>
-                <div>
-                    <img src="{{ bis['image_url'] }}" />
-                </div>
-                <p></p>
-            {% endfor %}    
-        </ol>
-    </div>
-    <section class="map">
-        <div id="map"></div>
-        <link rel="stylesheet" href="/static/css/maps.css">
-    </section>
-</div> -->
-
-
-
-<script src="/static/js/mapStyles.js"></script>
 <script src="/static/js/maps.js"></script>
 <script
   async
