@@ -21,8 +21,8 @@
                     <a href="/home" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/shop" class="nav-link">Search</a>
-                </li>
+                    <a href="/profile" class="nav-link">Profile</a>
+                  </li>
                 <li>
                     <a href="/logout" class="nav-link">Log out</a>
                 </li>
@@ -33,11 +33,13 @@
 
 <div class="container text-center text-light">
     <h1>{{ user.username }}'s Page</h1>
-    {{ user.email }}
+
     <br></br>
-    Reviews left:
+    <h3>Reviews left:</h3>
         {% for review in reviews %}
-        <h1> {{ review }} </h1>
+            Store: {{ review.shop.shop_name }}
+            Review:{{ review }}
+            <br></br>
         {% endfor %}
     {% endblock %}
 </div>
