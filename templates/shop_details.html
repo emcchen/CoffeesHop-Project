@@ -21,8 +21,8 @@
                     <a href="/home" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/shop" class="nav-link">Search</a>
-                </li>
+                    <a href="/profile" class="nav-link">Profile</a>
+                  </li>
                 <li>
                     <a href="/logout" class="nav-link">Log out</a>
                 </li>
@@ -32,9 +32,14 @@
 </nav>
 
 <div class="container text-light">
+
     <div id="store_name">
         <h1> {{ business_info['name'] }} </h1>
     </div>
+
+    <!-- <button class="favorite-button" type="button">
+        <span id="count">0 </span> Likes
+    </button> -->
 
     <div class= info>
         <div>
@@ -96,16 +101,18 @@
         </p>
     </form>
 
+
     <div>
     Reviews:
         <ul>
-            {% for review in shop_reviews %}
-                <li> {{ review }} </li>
+            {% for rev in shop_reviews %}
+                <li>  {{ rev }} </li>
             {% endfor %}
         </ul>
     </div>
 </div>
 
 <script src="/static/js/review.js"></script>
+<script src="/static/js/favorite.js"></script>
 
 {% endblock %}
