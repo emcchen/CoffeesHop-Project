@@ -92,11 +92,7 @@ def logout():
 @app.route('/new-shop', methods=["POST"])
 def add_shop():
     """ Adds a shop and review to the database """
-    # print(request.json)
-    print(request.get_json())
-    print('\n' *10)
-    print(request.form)
-    print('\n'*20)
+
     shop_name = request.form.get('name')
     address = request.form.get('address')
     zip_code = request.form.get('zip')
