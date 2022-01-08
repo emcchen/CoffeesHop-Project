@@ -91,6 +91,27 @@
         </div>
     </div> 
 
+
+
+    <form action="/post-for-data" id="leave-review" method="POST" enctype="multipart/form-data">
+        <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
+        <p>
+            <textarea id="reviewed" type="text" style="margin: 0px; height: 100px; width: 310px; resize:none;"></textarea>
+        </p>
+            <input id="file" type="file" name="my-file">
+        <p>
+            <button type="submit">Submit a review</button>
+        </p>
+    </form>
+
+
+    <!-- C&P original
+
+        <form action="/post-for-data" method="post" enctype="multipart/form-data">
+        <input type="file" name="my-file">
+        <input type="submit">
+    </form>
+
     <form id="leave-review" method="POST">
         <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
         <p>
@@ -99,14 +120,18 @@
         <p>
             <button type="submit">Submit a review</button>
         </p>
-    </form>
+    </form> -->
+
+
 
 
     <div>
-    Reviews:
+
+
+    <h1>Reviews:</h1>
         <ul>
-            {% for rev in shop_reviews %}
-                <li>  {{ rev }} </li>
+            {% for info in shop_info %}
+                <li>  <b>{{ info.user.username }}</b> left a review: <b>{{ info }}</b></li>
             {% endfor %}
         </ul>
     </div>
