@@ -32,12 +32,13 @@ def get_user_by_username(username):
 
 ########## REVIEW ##########
 
-def create_review(user, shop, yelp_id, review):
+def create_review(user, shop, yelp_id, review, img_url):
     """Create new review"""
     new_review = Review(user=user,
                         shop=shop,
                         yelp_id=yelp_id,
-                        review=review)
+                        review=review,
+                        img_url=img_url)
 
     db.session.add(new_review)
     db.session.commit()
@@ -49,8 +50,12 @@ def get_reviews_by_yelp_id(yelp_id):
     return Review.query.filter(Review.yelp_id == yelp_id).all()
 
 def get_reviews_by_user_id(user_id):
-    """Get review by a user's id"""
+    """ Returns reviews by a user's id"""
     return Review.query.filter(Review.user_id == user_id).options(db.joinedload('shop')).all()
+
+def get_reviews_by_yelp(yelp_id):
+    """ Returns reviews by a yelp's id"""
+    return Review.query.filter(Review.yelp_id == yelp_id).options(db.joinedload('user')).all()
 
 
 ########## SHOP ##########
