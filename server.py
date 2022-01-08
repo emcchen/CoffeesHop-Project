@@ -7,9 +7,13 @@ from jinja2 import StrictUndefined
 import json
 import crud
 import requests
+import cloudinary.uploader
 
 app = Flask(__name__)
 api_key = os.environ['YELP_API_KEY']
+CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
+CLOUDINARY_SECRET = os.environ['CLOUDINARY_SECRET']
+CLOUD_NAME = "emcchen"
 # Required to use Flask sessions
 app.secret_key = "SECRET"
 
@@ -18,7 +22,6 @@ app.secret_key = "SECRET"
 # set an attribute of the Jinja environment that says to make this an
 # error.
 app.jinja_env.undefined = StrictUndefined
-
 
 @app.route('/')
 def loginpage():
@@ -48,7 +51,6 @@ def register_user():
         flash("Account created, please log in")
         return redirect('/')
 
-
 @app.route('/get-user', methods=["POST"])
 def gets_user():
     """Logs users in"""
@@ -73,57 +75,80 @@ def logout():
     session.clear()
     return redirect('/')
 
+# @app.route('/post-upload-form', methods=["POST"])
+# def post_upload_form():
+#     """Sends photo from form to cloud and database"""
+#     my_file = request.files['my-file']
+
+#     #Save uploaded file to Cloudinary by API request
+#     result = cloudinary.uploader.upload(my_file,
+#                                         api_key=CLOUDINARY_KEY,
+#                                         api_secret=CLOUDINARY_SECRET,
+#                                         cloud_name=CLOUD_NAME)
+#     #Save generated URL to database to display image back
+#     img_url = result['secure_url']
+
 
 @app.route('/new-shop', methods=["POST"])
 def add_shop():
-    """ Adds a store to the database """
+    """ Adds a shop and review to the database """
+    # print(request.json)
+    print(request.get_json())
+    print('\n' *10)
+    print(request.form)
+    print('\n'*20)
+    shop_name = request.form.get('name')
+    address = request.form.get('address')
+    zip_code = request.form.get('zip')
+    phone = request.form.get('phone')
+    yelp_id = request.form.get('id')
+    review = request.form.get('review')
+    logged_in_user = request.form.get('user')
 
-    shop_name = request.json.get('name')
-    address = request.json.get('address')
-    zip_code = request.json.get('zip')
-    phone = request.json.get('phone')
-    yelp_id = request.json.get('id')
-    review = request.json.get('review')
-    logged_in_user = request.json.get('user')
+    #Variable for route to access uploaded file
+    my_file = request.files['img']
+
+    #Save uploaded file to Cloudinary by API request
+    result = cloudinary.uploader.upload(my_file,
+                                        api_key=CLOUDINARY_KEY,
+                                        api_secret=CLOUDINARY_SECRET,
+                                        cloud_name=CLOUD_NAME)
+    #save generated url to database
+    img_url = result['secure_url']
 
     shop = crud.get_shop_by_yelp_id(yelp_id)
     user = crud.get_user_by_username(logged_in_user)
 
 
     if logged_in_user is None:
-        return 'You must log in to leave a review!'
+        return 'You must log in to leave a review'
     elif not review:
-        return 'You didn\'t leave a review..'
+        return 'No review..'
     # user is logged in and leaving review
     else:
         #if shop not in db, create shop and save in db, along with user's review
         #Display associated review in frontend
         if shop is None:
             shop = crud.create_shop(shop_name, address, zip_code, yelp_id, phone)
-        crud.create_review(user, shop, yelp_id, review)
+        crud.create_review(user, shop, yelp_id, review, img_url)
         return 'Review created'
         #if shop in db, save user's review in db and display associated reviews in frontend
         #save logged in user's review & display in frontend
-
 
 @app.route('/home')
 def home():
     """ Shows homepage"""
     return render_template('homepage.html')
 
-@app.route('/shop')
-def show_shop_form():
-    """Show shops search form"""
-    return render_template('search-form.html')
-
-@app.route('/reviewed')
+@app.route('/profile')
 def user_reviewed():
     """Shows current user's reviewed shops"""
+
     username = session['current_user']
     user = crud.get_user_by_username(username)
-    user_reviews = user.reviews
+    user_reviews = crud.get_reviews_by_user_id(user.user_id)
 
-    return render_template('reviewed_shops.html',
+    return render_template('profile.html',
                             user_reviews=user_reviews,
                             user=user)
 
@@ -139,7 +164,7 @@ def show_user(user_id):
     """Show user details"""
 
     user = crud.get_user_by_id(user_id)
-    user_reviews = user.reviews
+    user_reviews = crud.get_reviews_by_user_id(user_id)
 
     return render_template('user_details.html',
                             user=user,
@@ -170,7 +195,6 @@ def yelp_searches(zipcode):
                   'attributes': 'open_to_all,gender_neutral_restrooms'
                   }
 
-
     response = requests.get(url = endpoint, params= parameters, headers = headers)
     #convert JSON string to a Dictionary
     business_data = response.json()
@@ -185,7 +209,6 @@ def map_data():
 
     return jsonify(business_data)
 
-
 @app.route('/review/<yelp_id>')
 def reviews(yelp_id):
     """Search for shops on YELP by id"""
@@ -199,13 +222,17 @@ def reviews(yelp_id):
     business_info = response.json()
 
     shop_reviews = crud.get_reviews_by_yelp_id(yelp_id)
-
+    shop_info = crud.get_reviews_by_yelp(yelp_id)
 
     return render_template('shop_details.html',
                            business_info=business_info,
                            yelp_id=yelp_id,
                            shop_reviews=shop_reviews,
-                           reviews=reviews)
+                           shop_info=shop_info)
+
+
+
+
 
 
 
