@@ -40,6 +40,7 @@
     {% for rev in user_reviews %}
         <li> Store: {{ rev.shop.shop_name }} 
             <br> Review: {{ rev.review }} </br>
+            <br> <img src=" {{ rev.img_url }}"> </br>
             <br></br>
     {% endfor %}
     </ul>

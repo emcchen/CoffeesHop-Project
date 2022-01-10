@@ -39,6 +39,7 @@
         {% for review in reviews %}
             Store: {{ review.shop.shop_name }}
             Review:{{ review }}
+            <img src=" {{ review.img_url }} ">
             <br></br>
         {% endfor %}
     {% endblock %}

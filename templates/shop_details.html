@@ -36,11 +36,6 @@
     <div id="store_name">
         <h1> {{ business_info['name'] }} </h1>
     </div>
-
-    <!-- <button class="favorite-button" type="button">
-        <span id="count">0 </span> Likes
-    </button> -->
-
     <div class= info>
         <div>
             {% if business_info['price'] is defined %}
@@ -103,35 +98,13 @@
             <button type="submit">Submit a review</button>
         </p>
     </form>
-
-
-    <!-- C&P original
-
-        <form action="/post-for-data" method="post" enctype="multipart/form-data">
-        <input type="file" name="my-file">
-        <input type="submit">
-    </form>
-
-    <form id="leave-review" method="POST">
-        <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
-        <p>
-            <textarea id="reviewed" type="text" style="margin: 0px; height: 100px; width: 310px; resize:none;"></textarea>
-        </p>
-        <p>
-            <button type="submit">Submit a review</button>
-        </p>
-    </form> -->
-
-
-
-
     <div>
-
 
     <h1>Reviews:</h1>
         <ul>
             {% for info in shop_info %}
                 <li>  <b>{{ info.user.username }}</b> left a review: <b>{{ info }}</b></li>
+                <img src="{{ info.img_url }}">
             {% endfor %}
         </ul>
     </div>
