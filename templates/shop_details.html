@@ -33,7 +33,6 @@
         </div>
     </div>
 </nav>
-
 <div class="container text-light">
 
     <div id="store_name">
@@ -56,9 +55,7 @@
         <div id="store_phone">
             {{ business_info['display_phone'] }}
         </div>
-
         <p></p>
-
         <div>
             <b>Hours:</b> 
             <div>
@@ -99,8 +96,6 @@
         </div>
     </div> 
 
-
-
     <form action="/post-for-data" id="leave-review" method="POST" enctype="multipart/form-data">
         <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
         <p>
@@ -112,7 +107,6 @@
         </p>
     </form>
     <div>
-
     <h1>Reviews:</h1>
         <ul>
             {% for info in shop_info %}
