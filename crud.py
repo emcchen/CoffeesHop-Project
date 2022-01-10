@@ -3,7 +3,7 @@
 from model import db, User, Review, Shop, connect_to_db
 
 
-########## USER ##########
+#################### USER ####################
 
 def create_user(username, email, password):
     """Create and return a new user"""
@@ -21,16 +21,15 @@ def get_users():
 
     return User.query.all()
 
-def get_user_by_id(user_id):
-    """Returns a user by user id"""
-    return User.query.filter(User.user_id==user_id).first()
-
 def get_user_by_username(username):
     """Returns a user by their username"""
     return User.query.filter(User.username==username).first()
 
+def get_user_by_id(user_id):
+    """Returns a user by user id"""
+    return User.query.filter(User.user_id==user_id).first()
 
-########## REVIEW ##########
+#################### REVIEW ####################
 
 def create_review(user, shop, yelp_id, review, img_url):
     """Create new review"""
@@ -53,12 +52,11 @@ def get_reviews_by_user_id(user_id):
     """ Returns reviews by a user's id"""
     return Review.query.filter(Review.user_id == user_id).options(db.joinedload('shop')).all()
 
-def get_reviews_by_yelp(yelp_id):
+def get_reviews_combined_table(yelp_id):
     """ Returns reviews by a yelp's id"""
     return Review.query.filter(Review.yelp_id == yelp_id).options(db.joinedload('user')).all()
 
-
-########## SHOP ##########
+############### SHOP ###############
 
 def create_shop(shop_name, address, zip_code, yelp_id, phone):
     """Create shop info database"""
@@ -80,7 +78,6 @@ def get_shop_by_yelp_id(yelp_id):
 def get_shop_by_id(shop_id):
     """Returns a shop by shop id"""
     return Shop.query.filter(Shop.shop_id==shop_id).first()
-
 
 if __name__ == '__main__':
     from server import app

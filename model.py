@@ -28,11 +28,11 @@ class Review(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     shop_id = db.Column(db.Integer, db.ForeignKey('shops.shop_id'), nullable=True)
     yelp_id = db.Column(db.String(50), nullable=False)
-    review = db.Column(db.String(500), nullable=True)
+    review = db.Column(db.String(1000), nullable=True)
     img_url = db.Column(db.String, nullable=True)
 
     def __repr__(self):
-        return f'{self.review}'
+        return f'<Review={self.review}>'
 
 #reviews attribute in User and Shop objects that'll return list of Review.
     user = db.relationship('User', backref='reviews')
