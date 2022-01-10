@@ -18,15 +18,18 @@
 
       <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                  <a href="/home" class="nav-link">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="/profile" class="nav-link">Profile</a>
-              </li>
-              <li>
-                  <a href="/logout" class="nav-link">Log out</a>
-              </li>
+            <li class="nav-item">
+                <a href="/home" class="nav-link"> Home </a>
+            </li>
+            <li>
+              <a href="/profile" class="nav-link"> Profile </a>
+            </li>
+            <li>
+              <a href="/users" class="nav-link"> All users </a>
+            </li>
+            <li>
+                <a href="/logout" class="nav-link"> Log out </a>
+            </li>
           </ul>
       </div>
   </div>
@@ -43,7 +46,7 @@
         </p>
         <p>
             {% if business_data['total'] is defined %}
-                Total matches: {{ business_data['total'] }}
+                Total matches: {{ business_data['total']-1 }}
             {% else %}
                 Total matches: 0
             {% endif %}

@@ -19,13 +19,16 @@
       <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                  <a href="/home" class="nav-link">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="/profile" class="nav-link">Profile</a>
+                  <a href="/home" class="nav-link"> Home </a>
               </li>
               <li>
-                  <a href="/logout" class="nav-link">Log out</a>
+                <a href="/profile" class="nav-link"> Profile </a>
+              </li>
+              <li>
+                <a href="/users" class="nav-link"> All users </a>
+              </li>
+              <li>
+                  <a href="/logout" class="nav-link"> Log out </a>
               </li>
           </ul>
       </div>
@@ -39,14 +42,10 @@
 
 <div class="container text-light">
     <div class="row">
-      <div class="col-lg-6 col-md-6 order-sm-3">
+      <div>
         <b>What would you like to do?</b>
-        <ul>
-          <li><a href="/profile">View reviewed coffee shops</a></li>
-          <li><a href="/users">View all users</a></li>
-        </ul>
       </div>
-      <div class="container col-lg-6 col-md-6 order-sm-3">
+      <div>
         <h3>Search for Shops!</h3>
         <form method="GET" action="/shop/search">
           <label class="form-label" for="search-zip">Enter Zip Code:</label>
