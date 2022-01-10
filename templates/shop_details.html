@@ -18,13 +18,16 @@
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="/home" class="nav-link">Home</a>
+                    <a href="/home" class="nav-link"> Home </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/profile" class="nav-link">Profile</a>
-                  </li>
                 <li>
-                    <a href="/logout" class="nav-link">Log out</a>
+                  <a href="/profile" class="nav-link"> Profile </a>
+                </li>
+                <li>
+                  <a href="/users" class="nav-link"> All users </a>
+                </li>
+                <li>
+                    <a href="/logout" class="nav-link"> Log out </a>
                 </li>
             </ul>
         </div>
@@ -103,7 +106,7 @@
     <h1>Reviews:</h1>
         <ul>
             {% for info in shop_info %}
-                <li>  <b>{{ info.user.username }}</b> left a review: <b>{{ info }}</b></li>
+                <li>  <b><a href= "/users/{{ info.user.user_id}}"> {{ info.user.username }} </a> </b> left a review: <b>{{ info }}</b></li>
                 <img src="{{ info.img_url }}">
             {% endfor %}
         </ul>
@@ -111,6 +114,5 @@
 </div>
 
 <script src="/static/js/review.js"></script>
-<script src="/static/js/favorite.js"></script>
 
 {% endblock %}

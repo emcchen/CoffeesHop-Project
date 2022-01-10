@@ -18,13 +18,16 @@
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="/home" class="nav-link">Home</a>
+                    <a href="/home" class="nav-link"> Home </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/profile" class="nav-link">Profile</a>
-                  </li>
                 <li>
-                    <a href="/logout" class="nav-link">Log out</a>
+                  <a href="/profile" class="nav-link"> Profile </a>
+                </li>
+                <li>
+                  <a href="/users" class="nav-link"> All users </a>
+                </li>
+                <li>
+                    <a href="/logout" class="nav-link"> Log out </a>
                 </li>
             </ul>
         </div>
@@ -37,7 +40,7 @@
     <br></br>
     <h3>Reviews left:</h3>
         {% for review in reviews %}
-            Store: {{ review.shop.shop_name }}
+            Store: <a href= "/review/{{ review.shop.yelp_id}}"> {{ review.shop.shop_name }} </a>
             Review:{{ review }}
             <img src=" {{ review.img_url }} ">
             <br></br>

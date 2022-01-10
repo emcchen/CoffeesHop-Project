@@ -18,10 +18,16 @@
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="/home" class="nav-link">Home</a>
+                    <a href="/home" class="nav-link"> Home </a>
                 </li>
                 <li>
-                    <a href="/logout" class="nav-link">Log out</a>
+                  <a href="/profile" class="nav-link"> Profile </a>
+                </li>
+                <li>
+                  <a href="/users" class="nav-link"> All users </a>
+                </li>
+                <li>
+                    <a href="/logout" class="nav-link"> Log out </a>
                 </li>
             </ul>
         </div>
@@ -38,7 +44,7 @@
     <br></br>
     <ul>
     {% for rev in user_reviews %}
-        <li> Store: {{ rev.shop.shop_name }} 
+        <li> Store: <a href= "/review/{{ rev.shop.yelp_id}}"> {{ rev.shop.shop_name }} </a>
             <br> Review: {{ rev.review }} </br>
             <br> <img src=" {{ rev.img_url }}"> </br>
             <br></br>
