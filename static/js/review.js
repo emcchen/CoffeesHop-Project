@@ -17,15 +17,15 @@ button.addEventListener('submit', evt => {
     form.append('user', document.querySelector('#hidden-user').value);
     form.append('img', document.querySelector('#file').files[0]);
 
-    const allDetails = {
-        name: document.querySelector('#store_name').innerText,
-        address: document.querySelector('#store_address').innerText,
-        zip: document.querySelector('#store_zip').innerText,
-        phone: document.querySelector('#store_phone').innerText,
-        id: location.pathname.split('/')[2],
-        review: document.querySelector('#reviewed').value,
-        user: document.querySelector('#hidden-user').value
-    };
+    // const allDetails = {
+    //     name: document.querySelector('#store_name').innerText,
+    //     address: document.querySelector('#store_address').innerText,
+    //     zip: document.querySelector('#store_zip').innerText,
+    //     phone: document.querySelector('#store_phone').innerText,
+    //     id: location.pathname.split('/')[2],
+    //     review: document.querySelector('#reviewed').value,
+    //     user: document.querySelector('#hidden-user').value
+    // };
 
 
     console.log(form)
@@ -35,10 +35,11 @@ button.addEventListener('submit', evt => {
     })
       .then(response => response.text()) 
       .then(responseData => { 
-        //   console.log(responseData)
+          console.log(responseData)
           if (responseData == 'Review created') {
               alert('Thanks for your review!');
-              document.querySelector('ul').insertAdjacentHTML('afterbegin', `<li> ${allDetails.review} </li>`);
+              document.querySelector('ul').insertAdjacentHTML('afterbegin', `<li> ${form.review} </li>`);
+              window.location.reload();
             }
       })
 });
