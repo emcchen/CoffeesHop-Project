@@ -62,19 +62,29 @@
         <div>
             <b>Hours:</b> 
             <div>
-            Monday: {{ business_info['hours'][0]['open'][0]['start']}} - {{ business_info['hours'][0]['open'][0]['end']}}
+                {% if business_info['hours'][0]['open'][0] is defined %}
+                    Monday: {{ business_info['hours'][0]['open'][0]['start']}} - {{ business_info['hours'][0]['open'][0]['end']}}
+                {% endif %}
             </div>
             <div>
+                {% if business_info['hours'][0]['open'][1] is defined %}
             Tuesday: {{ business_info['hours'][0]['open'][1]['start']}} - {{ business_info['hours'][0]['open'][1]['end']}}
+                {% endif %}
             </div>
             <div>
+                {% if business_info['hours'][0]['open'][2] is defined %}
             Wednesday: {{ business_info['hours'][0]['open'][2]['start']}} - {{ business_info['hours'][0]['open'][2]['end']}}
+                {% endif %}
             </div>
             <div>
+                {% if business_info['hours'][0]['open'][3] is defined %}
             Thursday: {{ business_info['hours'][0]['open'][3]['start']}} - {{ business_info['hours'][0]['open'][3]['end']}}
+                {% endif %}
             </div>
             <div>
-            Friday: {{ business_info['hours'][0]['open'][4]['start']}} - {{ business_info['hours'][0]['open'][4]['end']}}
+                {% if business_info['hours'][0]['open'][4] is defined %}
+                    Friday: {{ business_info['hours'][0]['open'][4]['start']}} - {{ business_info['hours'][0]['open'][4]['end']}}
+                {% endif %}
             </div>
             <div>
                 {% if business_info['hours'][0]['open'][5] is defined %}
@@ -106,7 +116,8 @@
     <h1>Reviews:</h1>
         <ul>
             {% for info in shop_info %}
-                <li>  <b><a href= "/users/{{ info.user.user_id}}"> {{ info.user.username }} </a> </b> left a review: <b>{{ info }}</b></li>
+                <li>  <b><a href= "/users/{{ info.user.user_id}}"> {{ info.user.username }} </a> 
+                </b> left a review: <b>{{ info.review }}</b></li>
                 <img src="{{ info.img_url }}">
             {% endfor %}
         </ul>
