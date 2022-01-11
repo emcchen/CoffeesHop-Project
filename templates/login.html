@@ -2,6 +2,7 @@
 
 
 {% block content %}
+<!--Navbar-->
 <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
   <div class="container">
       <a class="navbar-brand">CoffeesHop</a>
@@ -27,17 +28,21 @@
       </div>
   </div>
 </nav>
+<div class="flash_msg">
+  <!-- Show flashed messages -->
+  {% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+      <div class="flashed_messages"> {{ message }} </div>
+    {% endfor %}
+  {% endwith %}
+</div>
 
-<div class="container text-center py-5 px-5 text-light">
+<div class="container text-light" id= "welcome-back">
   <div class="row">
-    <div class="col-lg-3 col-md-6 order-sm-2">
+    <div class="col-lg-4 col-md-6 col-sm-6 order-sm-2" id="log-form">
       <!-- Log in form -->
-      <p>
-        <b> Please log in or sign up below.</b>
-      </p>
-      <p>
-        <h2> Log In </h2>
-      </p>
+      <br></br>
+      <div><h2> Log In </h2></div>
       <form action="/get-user" method="POST">
         <p>
           Username <input type="text" name="username" required>
@@ -46,16 +51,20 @@
           Password <input type="password" name="password" required>
         </p>
         <div>
-          <button type="submit" class="btn btn-outline-warning">Sign In</button>
+          <button type="submit" class="button">Sign In</button>
         </div>
       </form>
       <br>
       <br>
       <p>
-        Small blurb goes here blah blah open to all and blah safe and welcoming place blah blah
+        Small blurb goes here blah blah blah blah etc 
+        <p></p>
+
+
+        blurb
       </p>
     </div>
-    <div class="container col-lg-9 col-md-6 order-sm-1">
+    <div class="container col-lg-8 col-md-6 col-sm-6order-sm-1">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -75,9 +84,6 @@
           </div>
           <div class="carousel-item" data-bs-interval="2000">
             <img src="/static/img/carousel3.jpg" class="d-block w-100">
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="/static/img/carousel7.jpg" class="d-block w-100">
           </div>
           <div class="carousel-item" data-bs-interval="2000">
             <img src="/static/img/carousel10.jpg" class="d-block w-100">
@@ -103,5 +109,3 @@
 </div>
 
 {% endblock %}
-
-

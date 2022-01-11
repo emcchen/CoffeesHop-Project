@@ -2,7 +2,7 @@
 
 
 {% block content %}
-
+<!--Navbar-->
 <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
   <div class="container">
       <a class="navbar-brand">CoffeesHop</a>
@@ -34,36 +34,38 @@
       </div>
   </div>
 </nav>
-
-
-<div class="container text-center">
-  <h1> Welcome back {{ session["current_user"] }}! </h1>
+<div class="flash_msg">
+  <!-- Show flashed messages -->
+  {% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+      <div class="flashed_messages"> {{ message }} </div>
+    {% endfor %}
+  {% endwith %}
 </div>
 
-<div class="container text-light">
-    <div class="row">
-      <div>
-        <b>What would you like to do?</b>
+<div class="container" id="margins">
+  <div class="box">
+  <h1><b> Welcome back {{ session["current_user"] }}! </b></h1>
+    <br></br>
+      <div class="box_row">
+        <div>
+          <h4>Search for Shops</h4>
+          <form method="GET" action="/shop/search">
+              <div class="input-group shop-input">
+                <input
+                    id="search-zip"
+                    class="form-control"
+                    type="text"
+                    name="zipcode"
+                    placeholder="Zip Code"
+                    required
+                  >
+              </div>
+                <input type="submit" value="LOOK FOR SHOPS" class="button"> 
+          </form>
+        </div>
       </div>
-      <div>
-        <h3>Search for Shops!</h3>
-        <form method="GET" action="/shop/search">
-          <label class="form-label" for="search-zip">Enter Zip Code:</label>
-    
-            <div class="input-group shop-input">
-              <input
-                  id="search-zip"
-                  class="form-control"
-                  type="text"
-                  name="zipcode"
-                  placeholder="Zip Code"
-                  required
-                >
-            </div>
-              <input type="submit" value="Look for shops" class="button btn-dark btn-lg"> 
-        </form>
-      </div>
-    </div>
+  </div>
 </div>
 
 {% endblock %}
