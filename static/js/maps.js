@@ -54,8 +54,9 @@ function initMap() {
         </div>
 
         <div class="map-shop-info">
-          <b>${bis.name}</b> <br></br>
-          <b>Address: </b>${bis.location.address1}, ${bis.location.zip_code}
+          <h4>${bis.name}</h4>
+          <b>Address: </b> ${bis.location.address1}, ${bis.location.zip_code}
+  
         </div>
       </div>
     `;
@@ -68,8 +69,8 @@ function initMap() {
         // Shows shop ID when hovering over it 
         title: `Shop ID: ${bis.rating}`,
         icon: {
-          url: '/static/img/tea-cup.svg',
-          scaledSize: new google.maps.Size(50, 50),
+          url: '/static/img/coffee-cup-1.svg',
+          scaledSize: new google.maps.Size(50, 30),
         },
         map, // same as saying map: map
       });

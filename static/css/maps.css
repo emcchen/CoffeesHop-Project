@@ -1,6 +1,14 @@
-  .map, #map {
+.map, #map {
     width: 100%;
-    height: 500px;
+    height: 400px;
     position: relative;
+    border-radius: 15px;
 }
+
+.window-content {
+  background-color: #835858;
+  padding: 10px;
+  border-radius: 20px;
+}
+
   
