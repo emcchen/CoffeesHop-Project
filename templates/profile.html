@@ -4,6 +4,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
     <div class="container">
+        <img class="navbar-icon" src='/static/img/coffee-cup-1.svg'/>
         <a class="navbar-brand">CoffeesHop</a>
   
         <button
@@ -34,24 +35,20 @@
     </div>
 </nav>
 
-<div class="text-light">
-    Your User ID: {{ user.user_id }}
+<div class="container">
+    <div class="title">
+        <br><h1>Your shop reviews:</h1><br>
+    </div>
+    <div class="title">
+        <div class="scroll" id="font-color">
+            {% for rev in user_reviews %}
+                Store: <h5><a href= "/review/{{ rev.shop.yelp_id}}"> {{ rev.shop.shop_name }} </a></h5>
+                    <br> Review: <br> {{ rev.review }} </br>
+                    <br> <img class="review-images" src=" {{ rev.img_url }}">
+                    <br><br>
+            {% endfor %}
+        </div>
+    </div>
 </div>
-<br></br>
-<br></br>
-<div class="text-light text-center">
-    <h3>Reviews you have left:</h3>
-    <br></br>
-    <ul>
-    {% for rev in user_reviews %}
-        <li> Store: <a href= "/review/{{ rev.shop.yelp_id}}"> {{ rev.shop.shop_name }} </a>
-            <br> Review: {{ rev.review }} </br>
-            <br> <img src=" {{ rev.img_url }}"> </br>
-            <br></br>
-    {% endfor %}
-    </ul>
-
-</div>
-
 
 {% endblock %}

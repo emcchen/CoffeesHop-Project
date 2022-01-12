@@ -5,8 +5,8 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
   <div class="container">
+      <img class="navbar-icon" src='/static/img/coffee-cup-1.svg'/>
       <a class="navbar-brand">CoffeesHop</a>
-
       <button
          class="navbar-toggler"
          type="button"
@@ -35,54 +35,62 @@
   </div>
 </nav>
 
-<button id="geocode-address"> Geocode Address </button>
-
-
-<div class="container custom-scrollbar">
-    What are you feeling today?
-    <div class="row">
-        <p class="zipcode" id={{zipcode}}>
-            Search results for zipcode: {{ zipcode }}
-        </p>
-        <p>
+<div class="container">
+    <div class="title">
+        <div class="zipcode" id={{zipcode}}>
+            <h3><b>What are you feeling today?</b></h3>
+            <h5>Search results for: {{ zipcode }}</h5>
             {% if business_data['total'] is defined %}
                 Total matches: {{ business_data['total']-1 }}
             {% else %}
                 Total matches: 0
             {% endif %}
-        </p>
+            <div><button class="button" id="geocode-address"> Enter map location </button></div>
+        </div>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
-        <div class="box col-lg-6 col-md-6 text-center" id="scroll">
-            <ol>
-                {% for bis in business_data['businesses'] %}
-                <li><a href="/review/{{bis['id']}}"> {{ bis['name'] }} </a></li>
-                <div>
-                    {{ bis['categories'][0]['title'] }}
-                </div>
-                <div>
-                    {{ bis['display_phone'] }}
-                </div>   
-                <div>
-                    Rating Score: {{ bis['rating'] }}
-                </div>
-                <div class="yelp-images">
-                    <img src="{{ bis['image_url'] }}" />
-                </div>
-                <p></p>
-                {% endfor %}
-            </ol>
+        <div class="col-lg-6 order-1">
+            <div class="title">
+                <section class="map">
+                    <div id="map"></div>
+                    <link rel="stylesheet" href="/static/css/maps.css">
+                </section>
+            </div>
         </div>
-        <div class="box col-lg-6 col-md-6">
-            <section class="map">
-                <div id="map"></div>
-                <link rel="stylesheet" href="/static/css/maps.css">
-            </section>
+        <div class="col-lg-6 order-2">
+            <div class="title">
+                <div class="scroll" id="font-color">
+                    <ol>
+                        {% for bis in business_data['businesses'] %}
+                        <li><a href="/review/{{bis['id']}}"> {{ bis['name'] }} </a></li>
+                        <div>
+                            {{ bis['categories'][0]['title'] }}
+                        </div>
+                        <div>
+                            {{ bis['display_phone'] }}
+                        </div>   
+                        <div>
+                            Rating Score: {{ bis['rating'] }}
+                        </div>
+                        <div>
+                            {% if bis['price'] is defined %}
+                                {{ bis['price']}}
+                            {% endif %}
+                        </div>
+                        <div class="yelp-images">
+                            <img src="{{ bis['image_url'] }}" />
+                        </div>
+                        <p></p>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
         </div>
-    </div>
 </div>
+
 
 <script src="/static/js/maps.js"></script>
 <script

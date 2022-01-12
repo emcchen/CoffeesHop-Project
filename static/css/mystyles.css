@@ -8,7 +8,7 @@ body {
     color:#FFF0F0;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     font-family: "Kite One", sans-serif;
     color: #EBD4D4;
 }
@@ -18,28 +18,67 @@ h1, h2, h3, h4 {
     min-height: 100vh;
 }
 
+.navbar {
+    margin-bottom: 15px;
+}
+
+.navbar-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.review-images {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 5px;
+    width: 400px;
+}
+
+a {
+    color: #835858;
+}
+
+a:hover {
+    color: #C7B198;
+}
+
+#font-color {
+    color: #463333
+    
+}
+
 #welcome-back {
     text-align: center;
     margin: auto;
 }
 
-#log-form {
-    background-color: #463333;
-    border-radius: 15px;
-}
-
-.box {
+/* .box {
     width: 50%;
     padding: 50px;
     margin: auto;
     background-color: #463333;
     text-align: center;
     border-radius: 15px;
+} */
+
+.box {
+    height: auto;
+    width: auto;
+    padding: 50px;
+    margin: 150px auto 150px auto;
+    background-color: #463333;
+    text-align: center;
+    border-radius: 15px;
 }
 
-/* .login-row {
-    margin: 100px;
-} */
+.title {
+    width: auto;
+    padding: 5px;
+    margin: 15px auto 15px auto;
+    background-color: #463333;
+    text-align: center;
+    border-radius: 15px;
+}
 
 .button {
     background-color: #EBD4D4;
@@ -49,53 +88,67 @@ h1, h2, h3, h4 {
     border: 2px solid #463333;
 }
 
-#margins {
-    margin-block: 150px;
-    text-align:center;
-}
-
 img {
-    width:75%;
-    height: 75%;
+    width: 80%;
+    height: 80%;
+    border-radius: 15px;
 }
 
-
-@media (min-width: 500px) {
-    .shop-input {
-        width: 30%;
-        display: inline-flex;
-    }
+img#heart-coffee {
+    width: 100%;
+    height: 100%;
 }
 
-/* .input-group {
-    width: 30%;
+#reviewed {
+    margin: 0px auto auto auto;
+    height: 100px;
+    max-width: auto;
+}
+
+#file {
+    max-width: 200px;
+}
+
+.input-group {
+    width: 18%;
     display: inline-flex;
-} */
+    background-color: #FFF0F0;
+}
 
-#scroll {
+.scroll {
     overflow-y: scroll;
-    height: 500px;
+    height: 400px;
     width: 100%;
     background-color: #EBD4D4;
+    border-radius: 15px;
+    text-align: center;
 }
 
-#scroll::-webkit-scrollbar{
+.shop-detail-scroll {
+    overflow-y: scroll;
+    height: 560px;
+    width: 100%;
+    background-color: #EBD4D4;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.scroll::-webkit-scrollbar{
     width: 30px;
 }
 
-#scroll::-webkit-scrollbar-track{
+.scroll::-webkit-scrollbar-track{
     border:7px solid #463333;
     box-shadow: inset 0 0 2.5px 2px rgba(0,0,0,0,5)
 }
 
-#scroll::-webkit-scrollbar-thumb{
+.scroll::-webkit-scrollbar-thumb{
     background: linear-gradient(
         45deg,
         #FFF0F0,
         #463333
+        
         );
 }
-
-
 
 

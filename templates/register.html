@@ -3,6 +3,7 @@
 {% block content %}
 <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
   <div class="container">
+      <img class="navbar-icon" src='/static/img/coffee-cup-1.svg'/>
       <a class="navbar-brand">CoffeesHop</a>
 
       <button
@@ -23,27 +24,35 @@
       </div>
   </div>
 </nav>
-<div class="container text-center">
-  <h2>Create an Account</h2>
-  <form action="/register-user" method="POST">
-    <p>
-      Username <input type="text" name="username" required>
-    </p>
-    <p>
-      Email <input type="text" name = "email" required>
-    </p>
+<div class="flash_msg">
+  <!-- Show flashed messages -->
+  {% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+      <div class="flashed_messages"> {{ message }} </div>
+    {% endfor %}
+  {% endwith %}
+</div>
 
-    <p>
-      Password <input type="password" name="password" required>
-    </p>
+<div class="container">
+  <div class="box">
+    <h2><b>Create an Account</b></h2>
+    <form action="/register-user" method="POST">
+      <p>
+        Username <input type="text" name="username" required>
+      </p>
+      <p>
+        Email <input type="text" name = "email" required>
+      </p>
 
-    <p>
-      <button type="submit">Register</button>
-    </p>
-  </form>
+      <p>
+        Password <input type="password" name="password" required>
+      </p>
 
-  <A HREF='/'> Click here to return to login </A>
-
+      <p>
+        <button class="button" type="submit">Register</button>
+      </p>
+    </form>
+  </div>
 </div>
 
 {% endblock %}

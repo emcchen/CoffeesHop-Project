@@ -5,6 +5,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
   <div class="container">
+    <img class="navbar-icon" src='/static/img/coffee-cup-1.svg'/>
       <a class="navbar-brand">CoffeesHop</a>
 
       <button
@@ -36,15 +37,28 @@
   </div>
 </nav>
 
-  <h1>All Users</h1>
+<div class="container">
+  <div class="title">
+      <br><h1>All Users</h1><br>
+  </div>
+  <div class="row">
+      <div class="col-lg-6">
+        <img id="heart-coffee" src="/static/img/heart-coffee.jpeg">
+      </div>
+      <div class="col-lg-6">
+        <div class="scroll">
+          <ul>
+            {% for user in users %}
+              <li>
+                <a href="/users/{{ user.user_id }}">
+                  {{ user.username }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
 
-  <ul>
-    {% for user in users %}
-      <li>
-        <a href="/users/{{ user.user_id }}">
-          {{ user.username }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
 {% endblock %} 

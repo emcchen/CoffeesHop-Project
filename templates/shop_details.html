@@ -4,6 +4,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
     <div class="container">
+        <img class="navbar-icon" src='/static/img/coffee-cup-1.svg'/>
         <a class="navbar-brand">CoffeesHop</a>
   
         <button
@@ -33,91 +34,92 @@
         </div>
     </div>
 </nav>
-<div class="container text-light">
 
-    <div id="store_name">
-        <h1> {{ business_info['name'] }} </h1>
-    </div>
-    <div class= info>
-        <div>
-            {% if business_info['price'] is defined %}
-                {{ business_info['price']}}
-            {% endif %}
+<div class="container">
+    <div class = "row">
+        <div class = "col-lg-6 order-1">
+            <div class = "title">
+                <div id="store_name">
+                    <h2><b> {{ business_info['name'] }} </b></h2>
+                </div>
+                <div id="store_address">
+                    {{ business_info['location']['display_address'][0] }}, 
+                    {{business_info['location']['city'] }},
+                    {{ business_info['location']['state'] }} </div>
+                <div id="store_zip">
+                    {{ business_info['location']['zip_code'] }}
+                </div>
+                <div id="store_phone">
+                    {{ business_info['display_phone'] }}
+                </div>
+                <div id="store_hours">
+                    <h5><u>Hours:</u></h5> 
+                    <div>
+                        {% if business_info['hours'][0]['open'][0] is defined %}
+                            Monday: {{ business_info['hours'][0]['open'][0]['start']}} - {{ business_info['hours'][0]['open'][0]['end']}}
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if business_info['hours'][0]['open'][1] is defined %}
+                    Tuesday: {{ business_info['hours'][0]['open'][1]['start']}} - {{ business_info['hours'][0]['open'][1]['end']}}
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if business_info['hours'][0]['open'][2] is defined %}
+                    Wednesday: {{ business_info['hours'][0]['open'][2]['start']}} - {{ business_info['hours'][0]['open'][2]['end']}}
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if business_info['hours'][0]['open'][3] is defined %}
+                    Thursday: {{ business_info['hours'][0]['open'][3]['start']}} - {{ business_info['hours'][0]['open'][3]['end']}}
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if business_info['hours'][0]['open'][4] is defined %}
+                            Friday: {{ business_info['hours'][0]['open'][4]['start']}} - {{ business_info['hours'][0]['open'][4]['end']}}
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if business_info['hours'][0]['open'][5] is defined %}
+                            Saturday: {{ business_info['hours'][0]['open'][5]['start']}} - {{ business_info['hours'][0]['open'][5]['end']}}
+                        {% endif %}    
+                    </div>
+                    <div>
+                        {% if business_info['hours'][0]['open'][6] is defined %}
+                            Sunday: {{ business_info['hours'][0]['open'][6]['start']}} - {{ business_info['hours'][0]['open'][6]['end']}}
+                        {% endif %}
+                    </div>
+                </div>
+                <p></p>
+            <h4> Leave a review for them here </h4>
+            <form action="/post-for-data" id="leave-review" method="POST" enctype="multipart/form-data">
+                <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
+                <p>
+                    <textarea id="reviewed" type="text"></textarea>
+                </p>
+                    <input id="file" type="file" name="my-file">
+                <p>
+                    <button class="button" type="submit">Submit a review</button>
+                </p>
+            </form>
+            </div>
         </div>
-        <div id="store_address">
-            {{ business_info['location']['display_address'][0] }}, 
-            {{business_info['location']['city'] }},
-            {{ business_info['location']['state'] }}
-        </div>
-        <div id="store_zip">
-            {{ business_info['location']['zip_code'] }}
-        </div>
-        <div id="store_phone">
-            {{ business_info['display_phone'] }}
-        </div>
-        <p></p>
-        <div>
-            <b>Hours:</b> 
-            <div>
-                {% if business_info['hours'][0]['open'][0] is defined %}
-                    Monday: {{ business_info['hours'][0]['open'][0]['start']}} - {{ business_info['hours'][0]['open'][0]['end']}}
-                {% endif %}
-            </div>
-            <div>
-                {% if business_info['hours'][0]['open'][1] is defined %}
-            Tuesday: {{ business_info['hours'][0]['open'][1]['start']}} - {{ business_info['hours'][0]['open'][1]['end']}}
-                {% endif %}
-            </div>
-            <div>
-                {% if business_info['hours'][0]['open'][2] is defined %}
-            Wednesday: {{ business_info['hours'][0]['open'][2]['start']}} - {{ business_info['hours'][0]['open'][2]['end']}}
-                {% endif %}
-            </div>
-            <div>
-                {% if business_info['hours'][0]['open'][3] is defined %}
-            Thursday: {{ business_info['hours'][0]['open'][3]['start']}} - {{ business_info['hours'][0]['open'][3]['end']}}
-                {% endif %}
-            </div>
-            <div>
-                {% if business_info['hours'][0]['open'][4] is defined %}
-                    Friday: {{ business_info['hours'][0]['open'][4]['start']}} - {{ business_info['hours'][0]['open'][4]['end']}}
-                {% endif %}
-            </div>
-            <div>
-                {% if business_info['hours'][0]['open'][5] is defined %}
-                    Saturday: {{ business_info['hours'][0]['open'][5]['start']}} - {{ business_info['hours'][0]['open'][5]['end']}}
-                {% endif %}    
-            </div>
-            <div>
-                {% if business_info['hours'][0]['open'][6] is defined %}
-                    Sunday: {{ business_info['hours'][0]['open'][6]['start']}} - {{ business_info['hours'][0]['open'][6]['end']}}
-                {% endif %}
+        <div class = "col-lg-6 order-2">
+            <div class="title">
+                <div class="shop-detail-scroll scroll" id="font-color">
+                    <u><b>Reviews:</b></u>
+                    <ul>
+                        {% for info in shop_info %}
+                            <li>  <b><a href= "/users/{{ info.user.user_id}}"> {{ info.user.username }} </a> 
+                            </b> left a review: <b>{{ info.review }}</b></li>
+                            <img class="review-images" src="{{ info.img_url }}">
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
-    </div> 
-
-    <form action="/post-for-data" id="leave-review" method="POST" enctype="multipart/form-data">
-        <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
-        <p>
-            <textarea id="reviewed" type="text" style="margin: 0px; height: 100px; width: 310px; resize:none;"></textarea>
-        </p>
-            <input id="file" type="file" name="my-file">
-        <p>
-            <button type="submit">Submit a review</button>
-        </p>
-    </form>
-    <div>
-    <h1>Reviews:</h1>
-        <ul>
-            {% for info in shop_info %}
-                <li>  <b><a href= "/users/{{ info.user.user_id}}"> {{ info.user.username }} </a> 
-                </b> left a review: <b>{{ info.review }}</b></li>
-                <img src="{{ info.img_url }}">
-            {% endfor %}
-        </ul>
     </div>
 </div>
-
 <script src="/static/js/review.js"></script>
 
 {% endblock %}

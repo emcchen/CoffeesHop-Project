@@ -5,7 +5,8 @@
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
   <div class="container">
-      <a class="navbar-brand">CoffeesHop</a>
+      <img class="navbar-icon" src='/static/img/coffee-cup-1.svg'/>
+      <a class="navbar-brand"> CoffeesHop </a>
 
       <button
          class="navbar-toggler"
@@ -28,6 +29,7 @@
       </div>
   </div>
 </nav>
+
 <div class="flash_msg">
   <!-- Show flashed messages -->
   {% with messages = get_flashed_messages() %}
@@ -39,71 +41,75 @@
 
 <div class="container text-light" id= "welcome-back">
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-6 order-sm-2" id="log-form">
-      <!-- Log in form -->
-      <br></br>
-      <div><h2> Log In </h2></div>
-      <form action="/get-user" method="POST">
+    <div class="col-lg-4 col-md-6 col-sm-6 order-sm-2">
+      <div class="title" id="log-form">
+        <!-- Log in form -->
+        <br>
+        <div><h1> CoffeesHop </h1></div>
+        <br>
+        <div><h4> Log In </h4></div>
+        <form action="/get-user" method="POST">
+          <p>
+            Username <input type="text" name="username" required>
+          </p>
+          <p>
+            Password <input type="password" name="password" required>
+          </p>
+          <div>
+            <button type="submit" class="button">Sign In</button>
+          </div>
+        </form>
+        <br>
+        <br>
         <p>
-          Username <input type="text" name="username" required>
-        </p>
-        <p>
-          Password <input type="password" name="password" required>
-        </p>
-        <div>
-          <button type="submit" class="button">Sign In</button>
-        </div>
-      </form>
-      <br>
-      <br>
-      <p>
-        Small blurb goes here blah blah blah blah etc 
-        <p></p>
+          Small blurb goes here blah blah blah blah etc 
+          <p></p>
 
 
-        blurb
-      </p>
+          blurb
+        </p>
+      </div>
     </div>
     <div class="container col-lg-8 col-md-6 col-sm-6order-sm-1">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2000">
+              <img src="/static/img/carousel1.jpg" class="d-block w-100">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/static/img/carousel9.jpg" class="d-block w-100">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/static/img/carousel3.jpg" class="d-block w-100">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/static/img/carousel10.jpg" class="d-block w-100">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/static/img/carousel6.jpg" class="d-block w-100">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/static/img/carousel2.jpg" class="d-block w-100">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="2000">
-            <img src="/static/img/carousel1.jpg" class="d-block w-100">
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="/static/img/carousel9.jpg" class="d-block w-100">
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="/static/img/carousel3.jpg" class="d-block w-100">
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="/static/img/carousel10.jpg" class="d-block w-100">
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="/static/img/carousel6.jpg" class="d-block w-100">
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="/static/img/carousel2.jpg" class="d-block w-100">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
     </div>
   </div>
 </div>
