@@ -4,11 +4,9 @@ import os
 import json
 from random import choice, randint
 from datetime import datetime
-
 import crud
 import model
 import server
-
 
 os.system('dropdb stores')
 os.system('createdb stores')
@@ -20,8 +18,8 @@ model.db.create_all()
 with open('data/shops.json') as f:
     shops_data = json.loads(f.read())
 
-#Create shops, store them in list so we can
-#use them to create fake reviews
+#Create shops
+
 shops_in_db=[]
 for shop in shops_data:
     shop_name, address, zip_code, yelp_id, phone = (
@@ -36,17 +34,9 @@ for shop in shops_data:
     shops_in_db.append(db_shop)
 
 #Create 10 users.
-#Each user will make 10 reviews
 for n in range(10):
     username = f'username{n}'
     email = f'user{n}@testemail.com'
     password = 'test'
 
     user = crud.create_user(username, email, password)
-    
-    # for _ in range(2):
-    #   random_shop = choice(shops_in_db)
-    #   review = 'This is a review for a test'
-    #   yelp_id = 'aKMxYmJxom1ZeYHpLgGy2g'
-      
-    #   crud.create_review(user, random_shop, yelp_id, review)
