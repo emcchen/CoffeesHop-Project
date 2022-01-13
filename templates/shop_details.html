@@ -95,7 +95,7 @@
             <form action="/post-for-data" id="leave-review" method="POST" enctype="multipart/form-data">
                 <input id="hidden-user" type="hidden" value= "{{ session['current_user'] }}">
                 <p>
-                    <textarea id="reviewed" type="text"></textarea>
+                    <textarea id="reviewed" type="text" maxlength="5000"></textarea>
                 </p>
                     <input id="file" type="file" name="my-file">
                 <p>
@@ -107,7 +107,7 @@
         <div class = "col-lg-6 order-2">
             <div class="title">
                 <div class="shop-detail-scroll scroll" id="font-color">
-                    <u><b>Reviews:</b></u>
+                    <u><b><h5>Reviews:</h5></b></u>
                     <ul>
                         {% for info in shop_info %}
                             <li>  <b><a href= "/users/{{ info.user.user_id}}"> {{ info.user.username }} </a> 
