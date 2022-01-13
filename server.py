@@ -22,11 +22,13 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def loginpage():
     """Login page"""
+
     return render_template('login.html')
 
 @app.route('/register')
 def register():
     """Registers new user"""
+
     return render_template('register.html')
 
 @app.route('/register-user', methods=['POST'])
@@ -59,17 +61,19 @@ def gets_user():
     #Checks username and password with db
     if user and user.password == password:
         session['current_user'] = user.username
-        flash(f'You\'re logged in, {user.username} :) ')
+        flash(f'You\'re logged in, {user.username} :)')
         return redirect('/home')
     else:
-        flash('The email or password you entered was incorrect. Please try again. ')
+        flash('The email or password you entered was incorrect. Please try again.')
         return redirect('/')
 
 @app.route('/logout')
 def logout():
     """Clears session and returns to login page"""
+
     session.clear()
     flash('Successfully logged out. See you next time!')
+
     return redirect('/')
 
 @app.route('/new-shop', methods=["POST"])
@@ -83,7 +87,7 @@ def add_shop():
     yelp_id = request.form.get('id')
     review = request.form.get('review')
     logged_in_user = request.form.get('user')
-   
+
     #Variable for route to access uploaded file
     my_file = request.files['img']
 
@@ -114,6 +118,7 @@ def add_shop():
 @app.route('/home')
 def home():
     """Shows homepage"""
+
     return render_template('homepage.html')
 
 @app.route('/profile')
@@ -133,11 +138,12 @@ def all_users():
     """Views all users"""
 
     users = crud.get_users()
+
     return render_template('all_users.html', users=users)
 
 @app.route('/users/<user_id>')
 def show_user(user_id):
-    """Shows another user's profile"""
+    """Shows a user's profile"""
 
     user = crud.get_user_by_id(user_id)
     user_reviews = crud.get_reviews_by_user_id(user_id)
@@ -149,6 +155,7 @@ def show_user(user_id):
 @app.route('/shop/search')
 def find_shops():
     """Shop results"""
+
     zipcode = request.args.get('zipcode')
     business_data= yelp_searches(zipcode)
 
@@ -157,7 +164,8 @@ def find_shops():
                             zipcode=zipcode)
 
 def yelp_searches(zipcode):
-    """Search for shops on YELP"""
+    """Search for shops from YELP API"""
+
     #components of requests
     endpoint = 'https://api.yelp.com/v3/businesses/search'
     headers = {'Authorization': f'bearer {api_key}'}
@@ -180,6 +188,7 @@ def yelp_searches(zipcode):
 @app.route('/map')
 def map_data():
     """Returns shops list on google maps"""
+
     zipcode = request.args.get('zipcode')
     business_data= yelp_searches(zipcode)
 
@@ -188,10 +197,10 @@ def map_data():
 @app.route('/review/<yelp_id>')
 def reviews(yelp_id):
     """Search for shops on YELP by yelp id"""
+
     #components of requests
     endpoint = f'https://api.yelp.com/v3/businesses/{yelp_id}'
     headers = {'Authorization': f'bearer {api_key}'}
-
 
     response = requests.get(url = endpoint, headers = headers)
     #convert JSON string to a Dictionary

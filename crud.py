@@ -1,4 +1,4 @@
-"""CRUD operations - Create, Read, Update, Delete :) """
+"""CRUD operations - Create, Read, Update, Delete"""
 
 from model import db, User, Review, Shop, connect_to_db
 
@@ -13,12 +13,10 @@ def create_user(username, email, password):
 
     db.session.add(new_user)
     db.session.commit()
-
     return new_user
 
 def get_users():
     """Returns all users"""
-
     return User.query.all()
 
 def get_user_by_username(username):
@@ -41,7 +39,6 @@ def create_review(user, shop, yelp_id, review, img_url):
 
     db.session.add(new_review)
     db.session.commit()
-
     return new_review
 
 def get_reviews_by_yelp_id(yelp_id):
@@ -68,7 +65,6 @@ def create_shop(shop_name, address, zip_code, yelp_id, phone):
 
     db.session.add(shop_info)
     db.session.commit()
-
     return shop_info
 
 def get_shop_by_yelp_id(yelp_id):
