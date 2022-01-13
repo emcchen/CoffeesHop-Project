@@ -8,9 +8,15 @@ body {
     color:#FFF0F0;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h6 {
     font-family: "Kite One", sans-serif;
     color: #EBD4D4;
+}
+
+h5 {
+    font-family: "Kite One", sans-serif;
+    color:#835858;
+    text-align: center;
 }
 
 #page-container {
@@ -20,6 +26,9 @@ h1, h2, h3, h4, h5 {
 
 .navbar {
     margin-bottom: 15px;
+    font-family: "Kite One", sans-serif;
+    font-weight: bold;
+    opacity: 75%;
 }
 
 .navbar-icon {
@@ -34,6 +43,10 @@ h1, h2, h3, h4, h5 {
     width: 400px;
 }
 
+.review-separation {
+    border-bottom: dotted;
+}
+
 a {
     color: #835858;
 }
@@ -44,22 +57,12 @@ a:hover {
 
 #font-color {
     color: #463333
-    
 }
 
 #welcome-back {
     text-align: center;
     margin: auto;
 }
-
-/* .box {
-    width: 50%;
-    padding: 50px;
-    margin: auto;
-    background-color: #463333;
-    text-align: center;
-    border-radius: 15px;
-} */
 
 .box {
     height: auto;
@@ -100,9 +103,10 @@ img#heart-coffee {
 }
 
 #reviewed {
-    margin: 0px auto auto auto;
+    margin: auto;
     height: 100px;
-    max-width: auto;
+    width: 50%;
+    resize: none;
 }
 
 #file {
@@ -110,7 +114,7 @@ img#heart-coffee {
 }
 
 .input-group {
-    width: 18%;
+    width: 15%;
     display: inline-flex;
     background-color: #FFF0F0;
 }
@@ -147,8 +151,14 @@ img#heart-coffee {
         45deg,
         #FFF0F0,
         #463333
-        
         );
 }
 
+.alert {
+    text-align: center;
+    background-color: #835858;
+}
 
+#log-form {
+    margin: auto auto 15px auto;
+}
