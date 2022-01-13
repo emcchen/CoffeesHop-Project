@@ -34,7 +34,7 @@
   <!-- Show flashed messages -->
   {% with messages = get_flashed_messages() %}
     {% for message in messages %}
-      <div class="flashed_messages"> {{ message }} </div>
+      <div class="alert"> {{ message }} </div>
     {% endfor %}
   {% endwith %}
 </div>
@@ -50,7 +50,7 @@
         <div><h4> Log In </h4></div>
         <form action="/get-user" method="POST">
           <p>
-            Username <input type="text" name="username" required>
+            Username <input type="text" name="username" maxlength="20" required>
           </p>
           <p>
             Password <input type="password" name="password" required>
@@ -60,13 +60,11 @@
           </div>
         </form>
         <br>
-        <br>
         <p>
-          Small blurb goes here blah blah blah blah etc 
-          <p></p>
-
-
-          blurb
+          <h6>Find a space with restrooms!</h6><br>
+          Shops that <b>welcome everyone</b>, 
+          regardless of race, ethnicity, national origin, sex, 
+          sexual orientation, gender identity and expression, religion or disability.
         </p>
       </div>
     </div>
@@ -79,27 +77,26 @@
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="2000">
-              <img src="/static/img/carousel1.jpg" class="d-block w-100">
+              <img src="/static/img/c1.jpg" class="d-block w-100">
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-              <img src="/static/img/carousel9.jpg" class="d-block w-100">
+              <img src="/static/img/c2.jpg" class="d-block w-100">
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-              <img src="/static/img/carousel3.jpg" class="d-block w-100">
+              <img src="/static/img/c3.jpg" class="d-block w-100">
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-              <img src="/static/img/carousel10.jpg" class="d-block w-100">
+              <img src="/static/img/c4.jpg" class="d-block w-100">
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-              <img src="/static/img/carousel6.jpg" class="d-block w-100">
+              <img src="/static/img/c5.jpg" class="d-block w-100">
             </div>
             <div class="carousel-item" data-bs-interval="2000">
-              <img src="/static/img/carousel2.jpg" class="d-block w-100">
-            </div>
+              <img src="/static/img/c6.jpg" class="d-block w-100">
+            </div>            
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
