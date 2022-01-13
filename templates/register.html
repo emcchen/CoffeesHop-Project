@@ -24,11 +24,12 @@
       </div>
   </div>
 </nav>
+
 <div class="flash_msg">
   <!-- Show flashed messages -->
   {% with messages = get_flashed_messages() %}
     {% for message in messages %}
-      <div class="flashed_messages"> {{ message }} </div>
+      <div class="alert"> {{ message }} </div>
     {% endfor %}
   {% endwith %}
 </div>
@@ -38,10 +39,10 @@
     <h2><b>Create an Account</b></h2>
     <form action="/register-user" method="POST">
       <p>
-        Username <input type="text" name="username" required>
+        Username <input type="text" name="username" maxlength="20" required>
       </p>
       <p>
-        Email <input type="text" name = "email" required>
+        Email <input type="text" name = "email" maxlength="40" required>
       </p>
 
       <p>

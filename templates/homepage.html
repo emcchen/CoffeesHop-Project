@@ -35,11 +35,12 @@
       </div>
   </div>
 </nav>
+
 <div class="flash_msg">
   <!-- Show flashed messages -->
   {% with messages = get_flashed_messages() %}
     {% for message in messages %}
-      <div class="flashed_messages"> {{ message }} </div>
+      <div class="alert"> {{ message }} </div>
     {% endfor %}
   {% endwith %}
 </div>
@@ -58,7 +59,7 @@
                     class="form-control"
                     type="text"
                     name="zipcode"
-                    placeholder="Location or Zip"
+                    placeholder="City or Zip"
                     required
                   >
               </div>
