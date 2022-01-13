@@ -42,11 +42,16 @@
     <div class="title">
         <div class="scroll" id="font-color">
             {% for rev in user_reviews %}
-                Store: <h5><a href= "/review/{{ rev.shop.yelp_id}}"> {{ rev.shop.shop_name }} </a></h5>
-                    <br> Review: <br> {{ rev.review }} </br>
-                    <br> <img class="review-images" src=" {{ rev.img_url }}">
-                    <br><br>
+                <div>         
+                    <h5><a href= "/review/{{ rev.shop.yelp_id}}"> {{ rev.shop.shop_name }} </a></h5>
+                    <br> {{ rev.review }} </br>
+                </div>
+                <div class="review-separation">
+                    <img class="review-images" src=" {{ rev.img_url }}"><br>
+                </div>
+                <br>
             {% endfor %}
+
         </div>
     </div>
 </div>
