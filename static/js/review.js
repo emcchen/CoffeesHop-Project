@@ -26,6 +26,3 @@ document.querySelector('#leave-review').addEventListener('submit', evt => {
             }
       })
 });
-
-
-
