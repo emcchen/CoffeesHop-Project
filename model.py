@@ -1,4 +1,4 @@
-"""Models for liked/favorited shops"""
+"""Models for shops"""
 
 from flask_sqlalchemy import SQLAlchemy
 
