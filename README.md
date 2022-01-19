@@ -81,7 +81,7 @@ Users need to create an account if they haven't already.
 ~~~~~~~~~~~~~~~~~~
 
 Search for a shop by zipcode.
-![Search](/static/img/gifs/zip_search.gif)
+![alt-text](https://github.com/emcchen/project/static/img/gifs/zip_search.gif) 
 
 
 **Search results** <br>
