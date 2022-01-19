@@ -80,6 +80,7 @@ Open [http://localhost:5000](http://localhost:5000) in your browser.
 Users need to create an account if they haven't already.
 
 Search for a shop by zipcode.
+
 ![alt-text](https://github.com/emcchen/CoffeesHop-Project/blob/main/static/img/gifs/zip_search.gif) 
 
 
