@@ -5,7 +5,7 @@ CoffeesHop is a full-stack web application built to locate coffee shops and cafe
 * [Tech Stack](#technologiesused)
 * [Installation](#installation)
 * [Features](#features)
-* [Future](#future)
+* [Future Implementations](#future)
 
 ## <a name="technologiesused"></a>Tech Stack
 
@@ -111,5 +111,9 @@ View other profiles
 ![alt-text](https://github.com/emcchen/CoffeesHop-Project/blob/main/static/img/gifs/user_profiles.gif)
 
 
+## <a name="future"></a>Future Implementations
 
-## <a name="future"></a>Future
+* Add 5-star rating feature
+* Allow users to friend other users
+* Have an activity feed of friend's activities
+* Give a radius option in search options
