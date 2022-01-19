@@ -86,23 +86,29 @@ Search for a shop by zipcode.
 
 **Search results** <br>
 Can use the map location button to pan the maps to where you want.
-~~~~~~~~~~~~~~~~~~
 
-View shop results listed out
-~~~~~~~~~~~~~~~~~~
+![alt-text](https://github.com/emcchen/CoffeesHop-Project/blob/main/static/img/gifs/geocode.gif)
+
+View shop results listed out.
+
+![alt-text](https://github.com/emcchen/CoffeesHop-Project/blob/main/static/img/gifs/shop_list.gif)
 
 View a particular shop's details, with an option to leave a review.
-~~~~~~~~~~~~~~~~~~
+
+![alt-text](https://github.com/emcchen/CoffeesHop-Project/blob/main/static/img/gifs/particular_shop.gif)
 
 Write your own review with a photo
-~~~~~~~~~~~~~~~~~~
+
+![alt-text](https://github.com/emcchen/CoffeesHop-Project/blob/main/static/img/gifs/review.gif)
 
 **Profiles** <br>
 View your reviewed shops
-~~~~~~~~~~~~~~~~~~
+
+![alt-text](https://github.com/emcchen/CoffeesHop-Project/blob/main/static/img/gifs/profile.gif)
 
 View other profiles
-~~~~~~~~~~~~~~~~~~
+
+![alt-text](https://github.com/emcchen/CoffeesHop-Project/blob/main/static/img/gifs/user_profiles.gif)
 
 
 
