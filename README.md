@@ -76,5 +76,34 @@ Open [http://localhost:5000](http://localhost:5000) in your browser.
 
 
 ## <a name="features"></a>Features
+**Login/Registration** <br>
+Users need to create an account if they haven't already.
+~~~~~~~~~~~~~~~~~~
+
+Search for a shop by zipcode.
+![Search](/static/img/gifs/zip_search.gif)
+
+
+**Search results** <br>
+Can use the map location button to pan the maps to where you want.
+~~~~~~~~~~~~~~~~~~
+
+View shop results listed out
+~~~~~~~~~~~~~~~~~~
+
+View a particular shop's details, with an option to leave a review.
+~~~~~~~~~~~~~~~~~~
+
+Write your own review with a photo
+~~~~~~~~~~~~~~~~~~
+
+**Profiles** <br>
+View your reviewed shops
+~~~~~~~~~~~~~~~~~~
+
+View other profiles
+~~~~~~~~~~~~~~~~~~
+
+
 
 ## <a name="future"></a>Future
